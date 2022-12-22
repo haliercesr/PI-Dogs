@@ -13,11 +13,13 @@ function Card(props) {
          
          <Link to={`/detail/${id}`}>
           <div className={styles.Divimg}>
-            <img src={image.url} alt='dog'/>
+            <img src={image.url?image.url:image} alt='dog'/> {/* esto es para filtrar, hay que hacerlo en el servidor */}
           </div>       
          <div className={styles.Divtext}> 
-           <h3 >{name}</h3>
+           <h1 >{name}</h1>
+           <h2>Temperamentos</h2>
            <h3 >{temperament}</h3> 
+           <h2>Peso(KG)</h2>
            <h3 >{weight.metric}</h3> 
          </div>
          </Link>

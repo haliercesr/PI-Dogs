@@ -19,8 +19,9 @@ function Create(props) {
          weightMin: 0,
          weightMax: 0,
          life_span: 0,
-         image:'',
+         image: '',
          selectedTemperaments: [],
+         image: '',
 
       })
    const [errors, setErrors] = useState({})
@@ -36,43 +37,46 @@ function Create(props) {
 
    const handleSubmit = async (e) => {
       e.preventDefault()   //evitar que se recarge la pagina 
-      
-      try {
-         const{name,heightMin,heightMax,weightMin,weightMax,life_span,selectedTemperaments,image}=user
-         const valuesArray = Object.values(errors).join() //tomo los valores de errors
-         
-         if(valuesArray.length===4){
 
-            let userSubmit={
+      try {
+         if(user.name==='')window.alert('Por favor completar el formulario')
+
+         const { name, heightMin, heightMax, weightMin, weightMax, life_span, selectedTemperaments, image } = user
+         const valuesArray = Object.values(errors).join() //tomo los valores de errors
+          console.log(valuesArray.length)
+         if (valuesArray.length === 5 ) {
+            
+            let userSubmit = {
                name,
-               height:[Number(heightMin),Number(heightMax)],
-               weight:[Number(weightMin),Number(weightMax)],
-               life_span:Number(life_span),
+               height: [Number(heightMin), Number(heightMax)],
+               weight: [Number(weightMin), Number(weightMax)],
+               life_span: Number(life_span),
                image,
                selectedTemperaments,
             }
-               
-               const response = await axios.post(`${URL}/dogs/`, userSubmit)
-               const {data}=response
-               const { created,createdUser } = data
-               console.log(response)
-               if (!created) {
-                  window.alert()
-                   
-               } else {
-                  window.alert("El perro ya se encuentra creado")
-                   
-               }
+
+            const {data} = await axios.post(`${URL}/dogs/`, userSubmit)
+            
+            console.log(data)
+            if (data) {
+               window.alert("El perro se creo exitosamente")
+
+            } else {
+               window.alert("El perro ya se encuentra creado, por favor elije otro nombre")
+
+            }
 
 
-      } else{ window.alert("El formulario contiene errores")}
+         } else if(user.name!==''){ 
+            window.alert("El formulario contiene errores") 
+         }
 
-    
 
 
-     } catch (error) { window.alert(error.message) }
+
+      } catch (error) { window.alert(error.message) }
    }
-   
+
 
 
    const handleChange = (e) => {
@@ -80,22 +84,22 @@ function Create(props) {
       const name = e.target.name
       setData({ ...user, [name]: property })
       setErrors(validations({ ...user, [name]: property }))
-      
-      if(e.target.type==="checkbox"){
-      if (user.selectedTemperaments.includes(property)) {
-         // Si ya está seleccionado, quítalo
-         const updatedTemperaments = user.selectedTemperaments.filter(
-            (temp) => temp !== property
-         );
-         setData({ ...user, selectedTemperaments: updatedTemperaments });
-         setErrors(validations({ ...user, selectedTemperaments: updatedTemperaments }))
 
-      } else {
-         // Si no está seleccionado, agrégalo
-         setData({ ...user, selectedTemperaments: [...user.selectedTemperaments, property] });
-         setErrors(validations({ ...user, selectedTemperaments: [...user.selectedTemperaments, property] }))
+      if (e.target.type === "checkbox") {
+         if (user.selectedTemperaments.includes(property)) {
+            // Si ya está seleccionado, quítalo
+            const updatedTemperaments = user.selectedTemperaments.filter(
+               (temp) => temp !== property
+            );
+            setData({ ...user, selectedTemperaments: updatedTemperaments });
+            setErrors(validations({ ...user, selectedTemperaments: updatedTemperaments }))
+
+         } else {
+            // Si no está seleccionado, agrégalo
+            setData({ ...user, selectedTemperaments: [...user.selectedTemperaments, property] });
+            setErrors(validations({ ...user, selectedTemperaments: [...user.selectedTemperaments, property] }))
+         }
       }
-   }
    }
 
 
@@ -105,28 +109,28 @@ function Create(props) {
    // const allTemperaments = ['Calm', 'Active', 'Friendly', 'Energetic', 'Loyal'];
 
    // Manejador de cambio cuando se selecciona o deselecciona un temperamento
- /* const handleTemperamentChange = (e) => {
-      const selectedValue = e.target.value;
-      console.log(selectedValue)
-
-      if (user.selectedTemperaments.includes(selectedValue)) {
-         // Si ya está seleccionado, quítalo
-         const updatedTemperaments = user.selectedTemperaments.filter(
-            (temp) => temp !== selectedValue
-         );
-         setData({ ...user, selectedTemperaments: updatedTemperaments });
-      } else {
-         // Si no está seleccionado, agrégalo
-         setData({ ...user, selectedTemperaments: [...user.selectedTemperaments, selectedValue] });
-      }
-   };*/
+   /* const handleTemperamentChange = (e) => {
+        const selectedValue = e.target.value;
+        console.log(selectedValue)
+  
+        if (user.selectedTemperaments.includes(selectedValue)) {
+           // Si ya está seleccionado, quítalo
+           const updatedTemperaments = user.selectedTemperaments.filter(
+              (temp) => temp !== selectedValue
+           );
+           setData({ ...user, selectedTemperaments: updatedTemperaments });
+        } else {
+           // Si no está seleccionado, agrégalo
+           setData({ ...user, selectedTemperaments: [...user.selectedTemperaments, selectedValue] });
+        }
+     };*/
 
    return (<div className={style.containerCreate}>
       <form className={style.RegForms} onSubmit={handleSubmit}>
 
          <div className={style.FormConteiner}>
             <div className={style.inputsConteiner}>
-            <h3>Crea un perro:</h3>
+               <h4>Caracteristicas:</h4>
                <div className={errors.name ? style.labelform1 : style.labelform11}>
                   <div className={style.labelReg}>
                      <label >Nombre:</label>
@@ -137,16 +141,16 @@ function Create(props) {
                <div className={errors.height ? style.labelform1 : style.labelform11}>
                   <div className={style.labelReg}>
                      <label >Altura (cm):</label>
-                     <input placeholder=" min" type='number' className={style.input1} name="heightMin" onChange={handleChange}/>
-                     <input placeholder=" max" type='number' className={style.input1} name="heightMax" onChange={handleChange}/>
+                     <input placeholder=" min" type='number' className={style.input1} name="heightMin" onChange={handleChange} />
+                     <input placeholder=" max" type='number' className={style.input1} name="heightMax" onChange={handleChange} />
                   </div>
                   <p className={style.p1}>{errors.height}</p>
                </div>
                <div className={errors.weight ? style.labelform1 : style.labelform11}>
                   <div className={style.labelReg}>
                      <label >Peso (Kg):</label>
-                     <input placeholder=" min" type='number' className={style.input1} name="weightMin" onChange={handleChange}/>
-                     <input placeholder=" max" type='number' className={style.input1} name="weightMax" onChange={handleChange}/>
+                     <input placeholder=" min" type='number' className={style.input1} name="weightMin" onChange={handleChange} />
+                     <input placeholder=" max" type='number' className={style.input1} name="weightMax" onChange={handleChange} />
                   </div>
                   <p className={style.p1}>{errors.weight}</p>
                </div>
@@ -182,21 +186,21 @@ function Create(props) {
                      </li>
                   ))}
                </ul>
-               <div>
-                  <h4>Temperamentos seleccionados:</h4>
-                  <ul>
-                     {user.selectedTemperaments.map((temperament) => (
-                        <li key={temperament}>{temperament}</li>
-                     ))}
-                  </ul>
-               </div>
             </div>
-            <p className={style.p1}>{errors.selectedTemperaments}</p>
+            <div className={style.temSelect}>
+               <h4>Temperamentos seleccionados:</h4>
+               <ul  >
+                  {user.selectedTemperaments.map((temperament) => (
+                     <li key={temperament}>✅{temperament}</li>
+                  ))}
+               </ul>
+            </div>
          </div>
+         <p className={style.p1}>{errors.selectedTemperaments}</p>
          <div className={style.buttonSubmit}>
             <button type="submit">Crear</button>
          </div>
-         <span ><Link to="/Home" className={style.SpanLink}>Volver</Link></span>
+         <span ><Link to="/home" className={style.SpanLink}>Volver</Link></span>
       </form >
 
    </div >)

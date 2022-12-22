@@ -18,10 +18,9 @@ function Detail(props) {
  
    useEffect(() => {                       
          if (allDogs.length>0) { 
-            const data=allDogs.filter(dog=>dog.id===Number(id))  
-            console.log(data)                   
+            const data=allDogs.filter(dog=>dog.id===Number(id))                   
             setDog(data);
-            console.log(dog)
+          
          }
    }, [id,allDogs]);
 
@@ -29,7 +28,6 @@ function Detail(props) {
    return (
       <div className={styles.DetailContainerCard}>
          {allDogs.length === 0 ? <LoadingComponent /> : null}
-         <Searchbar /> 
          {dog[0] && (
             <div className={styles.container}>
                <div className={styles.Detail}>

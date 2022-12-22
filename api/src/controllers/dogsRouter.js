@@ -11,9 +11,20 @@ const { api_key } = process.env;
 //GET | /dogs
 
 const getDogs = async () => {
-
-    return await axios.get(`${URLdogs}?api_key=${api_key}`)
-
+    try{
+     const response=await axios.get(`${URLdogs}?api_key=${api_key}`)
+     const dogsAPi=response.data
+     const dogsBdd = await Dog.findAll({
+        include: [{ model: Temperaments, through: 'dog_temperaments' }], // Incluir los temperamentos asociados
+    })
+     const dogsTemperamens=
+    console.log(dogsBdd)
+     const allDogs = [...dogsBdd, ...dogsAPi]
+     
+     return allDogs
+    }catch(error){
+        throw error;
+    }
 }
 
 
@@ -78,7 +89,7 @@ const postDogs = async (image, name, height, weight, life_span,selectedTemperame
     })
 
     if (!created) {
-        throw new Error('El nombre ya existe en la base de datos.');
+        return(created);
       }
 
 

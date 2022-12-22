@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from '../src/components/home/home';
 import Detail from './components/detail/detail';
 import Create from './components/create/create';
+import Searchbar from './components/searchbar/searchbar';
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
      
     <Router>
       <div className="App">
+        <Searchbar></Searchbar>
         <Switch>                           
         <Route exact path="/" component={Form} />  
         <Route exact path="/home" component={Home} />

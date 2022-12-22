@@ -1,4 +1,4 @@
-import { GET_DOGS, SEARCH_DOGS, QUERY_DOGS, ORDER, FILTER, TEMPERAMENTS } from "../actions/types"
+import { GET_DOGS, SEARCH_DOGS, QUERY_DOGS, ORDER, FILTER, TEMPERAMENTS,FILTERbdd } from "../actions/types"
 const { comparar } = require('../../utils/comparar')
 
 
@@ -28,6 +28,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
                 queryState: payload
             }
         case FILTER:
+            console.log(state.allDogs)
             return {
                 ...state,
                 allDogs: payload === "Todos"
@@ -46,6 +47,22 @@ const rootReducer = (state = initialState, { type, payload }) => {
                 ...state,
                 allDogsFilter: payload
             }
+            case FILTERbdd:
+                let filteredDogs = [];
+                 console.log(state.allDogs)
+                if (payload === "Todos") {
+                    filteredDogs = state.allDogsCopia;
+                } else if (payload === "API") {
+                    filteredDogs = state.allDogs.filter((dog) => dog.created === null);
+                } else if (payload === "BDD") {
+                    filteredDogs = state.allDogs.filter((dog) => dog.created === true);
+                }
+            
+                return {
+                    ...state,
+                    allDogs: filteredDogs
+                };
+            
 
         default:
             return { ...state }

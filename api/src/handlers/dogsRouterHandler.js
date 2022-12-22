@@ -5,16 +5,10 @@ const { getDogIdRaza, getDogName, getDogs, postDogs } = require('../controllers/
 
 const getDogsHandler = async (req, res) => {
     try {
-        const { data } = await getDogs();
-        /*    const raza1SinFiltrar = []
-            data.forEach(element => {
-                let raza = element.breed_group
-                raza1SinFiltrar.push({ raza })
-            });
-            //quitar duplicados y valores null
-            const raza1Filtrado = arrayFilterRepeat(raza1SinFiltrar)*/
+        response= await getDogs();
+       response.map(dog=>console.log(dog.image))
 
-        return res.status(200).send(data);
+        return res.status(200).json(response);
     } catch (error) {
         console.log(error.message)
         res.status(400).json({ error: error.message });  //UNA MEJOR MANERA DE MANEJAR EL ERROR PUEDE SER DISCRIMINANDO A QUE INSTANCIA PERTENECE
@@ -78,7 +72,7 @@ const postDogsHandler = async (req, res) => {
         return res.status(200).json(response)
     } catch (error) {
         console.log(error.message)
-        return res.status(400).json({ error: error.message })
+        return res.status(400).json(error)
     }
 }
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './searchbar.css'; 
 import { withRouter,useHistory } from 'react-router-dom';
 import { searchDogs,queryDogs } from '../redux/actions/actions';
@@ -10,6 +10,10 @@ function SearchBar(props) {
   const [query, setQuery] = useState('');
   const history = useHistory();
   const dispatch = useDispatch()
+
+  useEffect(() => { 
+
+}, [location]);
 
   const handleInputChange = (event) => {
     setQuery(event.target.value);
@@ -48,14 +52,15 @@ function SearchBar(props) {
         Buscar
       </button>
       <button onClick={exitForm} className="search-button">
-        salir
+        Salir
       </button>
     </div>:null}
-    {pathname!=='/home'&& pathname!=='/'?<div className="search-bar-container">
+    {pathname!=='/home'&& pathname!=='/' && pathname!=='/create' ?<div className="search-bar-container">
     <button onClick={backHome} className="search-button">
         Volver al inicio
       </button>
     </div>:null}
+    
 
   </>);
 }

@@ -2,7 +2,7 @@ import style from '../home/home.module.css';
 import { withRouter } from 'react-router-dom';
 import Searchbar from '../searchbar/searchbar'
 import { useSelector } from 'react-redux';
-import { getDogs, orderDogs, filterDogs, getTemperaments } from '../redux/actions/actions';
+import { getDogs, orderDogs, filterDogs, getTemperaments,filterApi } from '../redux/actions/actions';
 import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import Card from '../card/card'
@@ -51,11 +51,11 @@ function Home(props) {
         allDogs.length===0 && dispatch(getDogs())
         // Obtener la lista de temperamentos
         temper.length===0 && dispatch(getTemperaments())
-         
+        console.log(allDogs)
         setTemper(allDogsFilter)
         
 
-    }, [allDogsFilter]);
+    }, [allDogsFilter,location]);
 
        
  
@@ -95,20 +95,35 @@ function Home(props) {
     }
 
     const handleFilterFuente = (e) => {
+        const evento = e.target.value
+        dispatch(filterApi(evento))
+    }
 
+    const cards=(searchDogs)=>{
+        arraygroup(searchDogs)[numberpage - 1].map((element) => {
+            return <Card
+                key={element.id}
+                id={element.id}
+                name={element.name}
+                image={element.image}
+                temperament={element.temperament?element.temperament:element.temperaments.map(tem=>tem.name)}
+                weight={element.weight}
+
+            />
+        })
     }
 
 
 
+
     return (<div className={style.contenedorHome}>
-     
+        
         {searchDogs.length === 0 && num !== 0 && queryState === true ? <LoadingComponent /> : null}
         {allDogs.length === 0 && num !== 0 && queryState === false ? <LoadingComponent /> : null}
-        {pathname === '/home' ? <Searchbar /> : null}
 
         {pagination()}
         <div>
-            <h3>filtrar por:</h3>
+            <h3>Filtrar por:</h3>
             <div >
                 <select onChange={handleOrder}>
                     <option value="A">A-Z</option>
@@ -122,8 +137,8 @@ function Home(props) {
                 </select>
                 <select onChange={handleFilterFuente}>
                     <option value="Todos">Todos</option>
-                    <option value="API>">API</option>
-                    <option value="BASE DE DATOS>">BASE DE DATOS</option>
+                    <option value="API">API</option>
+                    <option value="BDD">BASE DE DATOS</option>
                 </select>
             </div>
         </div>
@@ -131,17 +146,7 @@ function Home(props) {
         {num === 0 && searchDogs.length === 0 && queryState === true && <h2>No hay resultados</h2>}
         <div className={style.Home}>
 
-            {searchDogs.length > 0 && queryState === true && arraygroup(searchDogs)[numberpage - 1].map((element) => {
-                return <Card
-                    key={element.id}
-                    id={element.id}
-                    name={element.name}
-                    image={element.image}
-                    temperament={element.temperament}
-                    weight={element.weight}
-
-                />
-            })}
+            {searchDogs.length > 0 && queryState === true && cards(searchDogs)}
             {allDogs.length > 0 && queryState === false && arraygroup(allDogs)[numberpage - 1].map((element) => {
                 return <Card
                     key={element.id}
