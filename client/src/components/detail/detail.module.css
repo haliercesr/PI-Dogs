@@ -125,44 +125,77 @@
 /*Extra large devices(large laptops and desktops, 1200px and up)*/
 @media only screen and (min-width: 1200px) {
 
-
+  .DetailContainerCard{
+    
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    background-image:url('../../images/107018-huellas-de-perro.jpg');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+ }
 
   .container{
        
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    height: 100%;
+   position:relative;
+    width: 800px;
+    height: 500px;
     justify-content: center;
     align-items: center;
-    background-color: rgb(255, 255, 255,0.5);
+    background-color: rgba(10, 10, 10, 0.687);
   
     
 }
- 
 
-    .Detail{
-        width: 300px;
-        height: 450px;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        color:aliceblue;
-        background-color: rgba(10, 10, 10, 0.687);
-        text-align: center;
-    }
+.NameDog{
+  position:absolute;
+  font-size: 40px;
+  text-decoration: underline;
+  left:270px;
+  top:0px;
+  color: rgb(227, 231, 3);
+}
+
+.AlturaDog{
+  position:absolute;
+  left:100px;
+  top:100px
+}
+
+.PesoDog{
+  position:absolute;
+  left:700px;
+  top:170px
+}
+
+.lifeDog{
+  position:absolute;
+  left:100px;
+  top:300px
+}
+
+span{
+  display: flex;
+  flex-direction: column;
+}
+
 
     .img{
       display: flex;
       align-items: flex-start;
       justify-content: center;
-      height: 450px;
-      width: 600px;
+      height: 350px;
+      width: 500px;
     }
 
     .img img{
-       width: 600px;
-        height: 450px;
+       width: 500px;
+        height: 350px;
+        border-radius: 600px;
         cursor: zoom-in;
     }
 
