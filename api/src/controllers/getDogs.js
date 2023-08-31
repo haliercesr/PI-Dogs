@@ -3,8 +3,8 @@ const axios =require('axios');
 const URLdogs='https://api.thedogapi.com/v1/breeds';
 const {api_key} = process.env;
 
-module.exports= async(req,res)=>{
-
+const getDogs= async(req,res)=>{
+    
     try{
         const {data} = await axios.get(`${URLdogs}?api_key=${api_key}`)
         if (!data) return res.status(404).send("No se pudo comunicar con el servidor")
@@ -18,9 +18,8 @@ module.exports= async(req,res)=>{
             if (value.raza !== null && value.raza) {
               return self.findIndex(item => item.raza === value.raza) === index;
             }})
-
-
         return res.status(200).json(raza1Filter)
-    }catch(error){
-    res.status(500).json({error:error.message})}
+    }catch(error){res.status(500).json({error:error.message})}
 }
+
+module.exports= getDogs;

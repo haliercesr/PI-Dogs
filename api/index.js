@@ -21,7 +21,7 @@ const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
 
 // Syncing all the models at once.
-conn.sync({ force: true }).then(() => {
+conn.sync({ force: true }).then(() => {     //FORCE:TRUE cada ves que hagamos cambios en el servidor se va a borrar la base de datos. Cuando tengamos todo listo se recomienda setearlo en false para que se guarden los datos y no se borren
   server.listen(3001, () => {
     console.log('%s listening at 3001'); // eslint-disable-line no-console
   });

@@ -5,7 +5,7 @@ module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('dog', {
     id: {
-      type: DataTypes.INTEGER,    //tambien se puede hacer con DataTypes.UUID Y en vez de autoIncrement usamos defaultValue:DataTypes.UUID
+      type: DataTypes.INTEGER,    //tambien se puede hacer con DataTypes.UUID Y en vez de autoIncrement usamos defaultValue:DataTypes.UUIDV4
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
@@ -44,9 +44,9 @@ module.exports = (sequelize) => {
     },
   },
     {
-      timestamps: true,
-      createdAt: false,
-      updatedAt: false,
+      timestamps:false,  //sirve para desaparesca createdAt y updatedAt
+           // createdAt: false,
+           // updatedAt:false,
     }
   );
 };

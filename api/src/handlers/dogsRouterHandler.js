@@ -1,11 +1,20 @@
-const getDogs=require('../controllers/getDogs');
+const getDogs = require('../controllers/getDogs');
 const getDogRaza=require('../controllers/getDogRaza');
 const getDogName=require('../controllers/getDogName');
 const postDogs=require('../controllers/postDogs');
 
 
-const getDogsHandler=(req,res)=>{
-    res.status(200).send("hola")};
+
+const getDogsHandler = async (req, res) => {
+    try {
+        const {response} = await getDogs();
+        console.log(response);
+        return res.status(200).json(response);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Error en el servidor");
+    }
+};
 
 const getDogRazaHandler=(req,res)=>{
     res.status(200).send("hola")};

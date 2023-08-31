@@ -17,9 +17,9 @@ module.exports = (sequelize) => {
 
     },
         {
-            timestamps: true,
-            createdAt: false,
-            updatedAt:false,
+            timestamps:false,  //sirve para desaparesca createdAt y updatedAt
+           // createdAt: false,
+           // updatedAt:false,
 
         });
 };
