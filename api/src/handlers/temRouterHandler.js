@@ -1,9 +1,24 @@
-const {getTem}=require('../controllers/getTem');
+const {getTem}=require('../controllers/temRouter');
+const { Temperaments } = require('../db')
+const {separarArray}= require('../utils/separarArray')
+const {arrayFilterRepeat}=require('../utils/arrayFilterRepeat')
 
-const getTemHandler=(req,res)=>{ 
+const getTemHandler=async(req,res)=>{ 
 
-    const response=getTem()
-    res.status(200).json(response)}
+    const response=await getTem()
+
+    const temRepetidos = response.map(char=>
+        char.temperament)
+    
+        //separo el array por comillas y los duplicados
+    const temSeparado=separarArray(temRepetidos,',')
+    
+    temSeparado.forEach(async (tem) => {
+        const Tem = await Temperaments.create({
+          name: tem,
+        });})
+
+    res.status(200).send("Se cargaron todos los temperamentos")}
 
 
 module.exports={

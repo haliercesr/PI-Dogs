@@ -1,26 +1,19 @@
-const { getDogs } = require('../controllers/getDogs');
-const { getDogIdRaza } = require('../controllers/getDogIdRaza');
-const { getDogName } = require('../controllers/getDogName');
-//const getDogName=require('../controllers/getDogName');
-//const postDogs=require('../controllers/postDogs');
-
+const {getDogIdRaza,getDogName,getDogs,postDogs} = require('../controllers/dogsRouter');
+const {arrayFilterRepeat}=require('../utils/arrayFilterRepeat')
 
 
 const getDogsHandler = async (req, res) => {
     try {
         const { data } = await getDogs();
-        const raza1 = []
+        const raza1SinFiltrar = []
         data.forEach(element => {
             let raza = element.breed_group
-            raza1.push({ raza })
+            raza1SinFiltrar.push({ raza })
         });
         //quitar duplicados y valores null
-        const raza1Filter = raza1.filter((value, index, self) => {
-            if (value.raza !== null && value.raza) {
-                return self.findIndex(item => item.raza === value.raza) === index;
-            }
-        })
-        return res.status(200).send(raza1Filter);
+        const raza1Filtrado = arrayFilterRepeat(raza1SinFiltrar)
+
+        return res.status(200).send(raza1Filtrado);
     } catch (error) {
         res.status(400).json({ error: error.message });
     }
@@ -48,6 +41,7 @@ const getDogNameHandler = async (req, res) => {
     try {
       
       const response= await getDogName(nombre)
+      if(response && response.length===0) return res.status(200).send("No hay razas con ese nombre")
       return res.status(200).json(response)
 
     } catch (error) { error: error.message }
@@ -55,8 +49,18 @@ const getDogNameHandler = async (req, res) => {
     
 };
 
-const postDogsHandler=(req,res)=>{
-   res.status(200).send("hola")};
+const postDogsHandler=async(req,res)=>{
+    const{image,name,height,weight,yearsoflife}=req.body
+    
+    try{
+     
+     if (!image || !name || !height || !weight || !yearsoflife) return res.status(400).json({error:'Faltan datos'})
+  
+   const response= await postDogs(image,name,height,weight,yearsoflife)
+
+  return res.status(200).send(response)
+    }catch(error){error:error.message}
+}
 
 module.exports = {
     getDogsHandler,
