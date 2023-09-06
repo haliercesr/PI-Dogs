@@ -15,7 +15,7 @@ const getTemHandler=async(req,res)=>{
     
     temSeparado.forEach(async (tem) => {
         const Tem = await Temperaments.create({
-          name: tem,
+          name: tem.toUpperCase(),
         });})
 
     res.status(200).send("Se cargaron todos los temperamentos")}

@@ -15,7 +15,7 @@ const dogsRouter = Router();
 dogsRouter.get('/',getDogsHandler); 
 dogsRouter.post('/', postDogsHandler);
 dogsRouter.get('/name',getDogNameHandler);   //cambie el orden para que /name se verifique primero, si pongo id primero entonces el endpoint /name me da error porque name no existe como id string UUID
-dogsRouter.get('/:id',getDogIdRazaHandler); 
+dogsRouter.get('/:idRaza',getDogIdRazaHandler); 
 
 
 
