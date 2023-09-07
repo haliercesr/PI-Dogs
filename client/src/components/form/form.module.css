@@ -1,0 +1,28 @@
+/*Extra small devices(phones, 600px and down)*/
+@media only screen and (min-width: 200px) {
+.containerForm {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../../images/perros.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+
+}
+}
+
+@media only screen and (min-width: 600px) {
+    .containerForm {
+     
+        background-image: url('../../images/0e92ccc673d484b06c68044268e40a9d.png');
+    
+    }
+}
+
+/*Extra large devices(large laptops and desktops, 1200px and up)*/
+@media only screen and (min-width: 1200px) {
+  
+}
