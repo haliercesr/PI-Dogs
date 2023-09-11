@@ -1,0 +1,187 @@
+/*Extra small devices(phones, 600px and down)*/
+@media only screen and (min-width: 200px) {
+    
+    .DetailContainerCard{
+    
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+        min-height: 100vh;
+        background-color:white;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+     }
+
+     .container{
+       
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+        width: 350px;
+        height: 640px;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(255, 255, 255);
+        border-radius: 30px;
+        
+    }
+
+    .Detail{
+        width: 100%;
+        height: 500px;
+        flex-direction: column;
+        color:aliceblue;
+        background-color: rgba(10, 10, 10, 0.687);
+    
+       
+    }
+
+    .img {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .img img{
+        height: 300;
+        width: 100%;
+        height: 100%;
+    }
+
+    .titleDetail {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    
+    .titleDet {
+      color: rgb(250, 250, 6);
+      text-decoration: underline;
+     
+    }
+    
+    .textDetail {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .textDetail h2 {
+      text-align: center;
+      margin: 5px;
+      font-size: 1.5rem;
+      font-family: 'Fredoka One', sans-serif;
+      color:rgb(210, 18, 18)
+    }
+  
+    .textDetail span{
+      color:rgb(255, 255, 255)
+    }
+    
+   
+
+
+}
+
+@media only screen and (min-width: 600px) {
+   
+
+     .container{
+        
+        display: flex;
+        flex-direction: row-reverse;
+        width: 100%;
+        height: 400px;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(255, 255, 255);
+        margin-top: 0%;
+        
+    }
+
+    .Detail{
+        width: 300px;
+        height: 300px;
+        flex-direction: column;
+        color:aliceblue;
+        background-color: rgba(10, 10, 10, 0.687);
+    }
+
+    .img{
+      height: 300px;
+      width: 300px;
+    }
+
+    .img img{
+        height: 300px;
+        width: 300px;
+    }
+
+    .textDetail h2 {
+      text-align: center;
+      margin: 5px;
+      font-size: 1rem;
+      font-family: 'Fredoka One', sans-serif;
+      color:rgb(210, 18, 18)
+    }
+
+
+
+
+}
+
+/*Extra large devices(large laptops and desktops, 1200px and up)*/
+@media only screen and (min-width: 1200px) {
+    .DetailContainerCard{
+    
+        display: flex;
+        justify-content: column;
+        width: 100%;
+        min-height: 100vh;
+        background-color:white;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+     }
+
+     .container{
+        margin-top: 30px;
+        display: flex;
+        flex-direction: row;
+        width: 700px;
+        height: 400px;
+        justify-content: center;
+        background-color: rgba(49, 48, 48, 0.5);
+        border-radius: 30px;
+        
+    }
+
+    .Detail{
+        width: 300px;
+        height: 300px;
+        flex-direction: column;
+        color:aliceblue;
+        background-color: rgba(10, 10, 10, 0.687);
+        border-top-left-radius: 30px;
+        border-bottom-left-radius: 30px;
+        border-bottom-right-radius: 0px;
+        text-align: center;
+    }
+
+    .img img{
+        border-top-right-radius: 30px;
+        border-bottom-right-radius: 30px;
+        border-top-left-radius: 0px;
+        height: 300
+    }
+
+}

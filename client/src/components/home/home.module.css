@@ -1,0 +1,74 @@
+
+@media only screen and (min-width: 200px) {
+    .contenedorHome{
+        display: flex;
+        flex-direction: column;
+        max-width: 100vw;
+        height: 100vh;
+        align-items: center;
+    }
+    
+    .Home{
+        display: flex;
+        justify-content: center;
+        background-color:white;
+        background-size: 100% 100%; /*esto hace que la imagen se adapte al tamaño de cualquier dispositivo deformandose si tiene que hacerlo*/
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        flex-wrap: wrap;
+    }
+
+    .paginationContenedor {
+        display: flex;
+        width: 100%;
+        height: 3rem;
+        justify-content: center;
+        align-items: center;
+      }
+      
+      .paginationPage{
+        margin-top: 1px;
+        padding: 6px;
+        font-size: 14px;
+      }
+      
+      .paginationContenedor button{
+        color: #090909;
+        padding: 0.4em 1.3em;
+        font-size: 14px;
+        border-radius: 0.5em;
+        background: #e8e8e8;
+        border: 1px solid #9f9d9d;
+        transition: all .3s;
+        cursor:pointer;
+      }
+      
+      
+      
+      .paginationPage {
+        display: flex;
+        flex-direction: row;
+        color: black;
+        list-style-type: none;
+      }
+    }
+    
+    @media only screen and (min-width: 600px) {
+        .Home{
+            background-color: white;
+            width: 90%;
+
+        }
+    }
+    
+    /*Extra large devices(large laptops and desktops, 1200px and up)*/
+    @media only screen and (min-width: 1200px) {
+       
+        .Home{
+            background-color: white;
+            width: 70%;
+           
+            
+        }
+    
+    }

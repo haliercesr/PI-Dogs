@@ -1,0 +1,163 @@
+@media only screen and (min-width: 200px) {
+    .containerCreate{
+        background-color: white;
+        display: flex;
+        width: 100vw;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+    
+    }
+    
+    .FormConteiner {
+    
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    
+    }
+    
+    .RegForms {
+        display: flex;
+        width: 400px;
+        height: 400px;
+        background-color: rgba(24, 24, 24, 0.5);
+        border-radius: 20px;
+        color: aliceblue;
+        
+       
+    }
+
+    .p1 {
+        margin: 0px;
+        color: red;
+        font-size: 1em;
+        font-weight: 600
+    }
+    
+    .labelReg{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row
+    }
+    
+    .labelform1 {
+        margin-top: 7px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+    
+    .labelform2 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        margin-bottom: 1em
+    }
+    
+    .labelform11 {
+        margin-top: 7px;
+        margin-bottom: 1em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    
+    }
+    
+    .labelform22 {
+        margin-top: 7px;
+        margin-bottom: 1em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    
+    }
+    
+    
+    .label1 {
+        margin: 3px;
+        font-size: 17px;
+    
+    }
+    
+    .input1 {
+        border-radius: 5px;
+        height: 25px;
+    }
+    
+    .input2 {
+        border-radius: 5px;
+        height: 25px;
+    }
+    
+    .label2 {
+        margin: 3px;
+        font-size: 17px;
+    }
+    
+    .forms button {
+        margin-top: 7px;
+        width: 60px;
+        height: 25px;
+        border-radius: 5px;
+        background-color: cornflowerblue;
+        border: 0px;
+        color: white;
+        font-weight: 600
+    }
+    
+    .buttonSubmit {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    
+    }
+    
+    
+    .buttonSubmit button {
+        width: 90px;
+        height: 25px;
+        border-radius: 5px;
+        background-image: linear-gradient(to top, #2f2f2f, #212121, #4a4c4a, #4c4c4c, #585858);
+        border: 0px;
+        color: white;
+        font-weight: 600;
+        font-size: 15.6px;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+    }
+    
+    .buttonSubmit button:hover {
+        color:rgb(185, 182, 182)
+     }
+     
+     .buttonSubmit button:active {
+         transform: translateY(2px) translateX(1px);
+         box-shadow: 0 0 0 0 black;
+     }
+    
+    .SpanLink{
+        color: white;
+    
+    }
+   
+}
+
+@media only screen and (min-width: 600px) {
+ 
+
+}
+
+/*Extra large devices(large laptops and desktops, 1200px and up)*/
+@media only screen and (min-width: 1200px) {
+
+
+}

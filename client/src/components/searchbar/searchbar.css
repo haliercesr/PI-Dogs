@@ -1,0 +1,62 @@
+
+@media only screen and (min-width: 200px) {
+
+  /* Estilos para el contenedor de la barra de búsqueda */
+.search-bar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px; /* Espacio superior para separar de otros elementos */
+  padding-bottom: 10px;
+  background-color:rgb(255, 240, 104);
+  width: 100%;
+}
+
+/* Estilos para el campo de entrada de texto */
+.search-input {
+  width: 200px;
+  padding: 6px;
+  font-size: 16px;
+  border: 3px solid #b2b048;
+  border-right: 0px;
+  outline: 0;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+/* Estilos para el botón de búsqueda */
+.search-button {
+  background-color: #b2b048;
+  color: white; /* Color de texto blanco */
+  border: none;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  padding: 6px 16px;
+  border: 3px solid #b2b048;
+  border-left: 0px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Estilo para el botón cuando se coloca el cursor sobre él */
+.search-button:hover {
+  background-color: #ddd96e; /* Color de fondo azul más oscuro en el hover */
+  border: 3px solid #ddd96e;
+  border-left: 0px;
+}
+
+  }
+  
+  @media only screen and (min-width: 600px) {
+    
+  }
+  
+  /*Extra large devices(large laptops and desktops, 1200px and up)*/
+  @media only screen and (min-width: 1200px) {
+     
+    
+  
+  }
+
+
+  

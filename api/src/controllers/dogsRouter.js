@@ -16,11 +16,11 @@ const getDogs = async () => {
 
 }
 
-//GET | /dogs/:idRaza
+//GET | /dogs/:id
 
 const getDogIdRaza = async (idRaza, source) => {
     console.log(idRaza)
-    const getDogIdRaza = source === "api" ? (await axios.get(`${URLdogsSearch}?q=${idRaza}&&api_key=${api_key}`)).data : await Dog.findAll({where:{name:"sasa"}});
+    const getDogIdRaza = source === "api" ? (await axios.get(`${URLdogs}/${idRaza}?api_key=${api_key}`)).data : await Dog.findAll({where:{id:idRaza}});
     
     return getDogIdRaza
 }
@@ -41,10 +41,9 @@ const getDogName = async (nombre) => {
     if (dogs.length !== 0) {
         return dogs
     } else {
-        const { data } = await axios(`${URLdogs}`)
+        const { data } = await axios(`${URLdogs}?api_key=${api_key}`)
     
         const dogs1Filter = data.filter(dog => dog.name.includes(nombre))
-        console.log(dogs1Filter)
         return dogs1Filter
     }
 }
