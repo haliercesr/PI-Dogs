@@ -2,12 +2,11 @@ import style from '../home/home.module.css';
 import { withRouter } from 'react-router-dom';
 import Searchbar from '../searchbar/searchbar'
 import { useSelector } from 'react-redux';
-import { getDogs, queryDogs, orderCards, filterCards } from '../redux/actions/actions';
+import { getDogs, orderDogs, filterDogs, getTemperaments } from '../redux/actions/actions';
 import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import Card from '../card/card'
 import LoadingComponent from '../loading/loading';
-import axios from 'axios';
 
 function Home(props) {
     const { location } = props;
@@ -15,10 +14,10 @@ function Home(props) {
     const allDogs = useSelector(state => state.allDogs)
     const searchDogs = useSelector(state => state.searchDogs)
     const queryState = useSelector(state => state.queryState)
+    const allDogsFilter = useSelector(state => state.allDogsFilter)
     const dispatch = useDispatch()
     const [numberpage, setNumberpage] = useState(1)
     const [num, setNum] = useState(1)
-    const URL = 'http://localhost:3001'
     const [temper, setTemper] = useState([])
 
     const nextpage = () => {
@@ -49,23 +48,17 @@ function Home(props) {
 
     useEffect(() => {
         //si lo pongo directamente en el return me da error porque es una funcion asincronica y tarda en completarse
-        dispatch(getDogs())
+        allDogs.length===0 && dispatch(getDogs())
         // Obtener la lista de temperamentos
-        axios.get(`${URL}/temperaments`)
-            .then(response => {
-                const temperamentos = response.data;
-                setTemper(temperamentos)
+        temper.length===0 && dispatch(getTemperaments())
+         
+        setTemper(allDogsFilter)
+        
 
-                // Aquí puedes hacer lo que necesites con la lista de temperamentos
-            })
-            .catch(error => {
-                console.error("Error al obtener la lista de temperamentos:", error);
-            });
+    }, [allDogsFilter]);
 
-        return () => {
-            dispatch(queryDogs(false))
-        };
-    }, []);
+       
+ 
 
     const pagination = () => {
         const data = queryState ? searchDogs : allDogs;
@@ -84,8 +77,8 @@ function Home(props) {
     function handleOrder(e) {
         const types = queryState ? "searchDogs" : "allDogs"
         const evento = e.target.value
-        if (evento === 'A' || evento === 'D') dispatch(orderCards([evento, "name", types]))
-        if (evento === 'AA' || evento === 'DD') dispatch(orderCards([evento, "weight", types]))
+        if (evento === 'A' || evento === 'D') dispatch(orderDogs([evento, "name", types]))
+        if (evento === 'AA' || evento === 'DD') dispatch(orderDogs([evento, "weight", types]))
         setNum(num + 1)// CON ESTO PUEDO HACER QUE SE ACTUALIZE EL USEEFFECT Y ME RENDERICE EL NUEVO ALLDOGS EN ORDEN ALFABETICO
 
 
@@ -94,7 +87,7 @@ function Home(props) {
     const handleFilter = (e) => {
 
         const evento = e.target.value
-        dispatch(filterCards(String(evento)))
+        dispatch(filterDogs(String(evento)))
         queryState === true && setNum(allDogs.length)
         queryState === false && setNum(searchDogs.length)
         console.log(evento)
@@ -108,10 +101,11 @@ function Home(props) {
 
 
     return (<div className={style.contenedorHome}>
+     
         {searchDogs.length === 0 && num !== 0 && queryState === true ? <LoadingComponent /> : null}
         {allDogs.length === 0 && num !== 0 && queryState === false ? <LoadingComponent /> : null}
         {pathname === '/home' ? <Searchbar /> : null}
-        
+
         {pagination()}
         <div>
             <h3>filtrar por:</h3>
@@ -124,7 +118,7 @@ function Home(props) {
                 </select>
                 <select onChange={handleFilter}>
                     <option value="Todos">Todos</option>
-                    {temper.length > 0 && (temper.map(tem => { return <option value={tem[0]}>{tem[0]}</option> }))}
+                    {temper.length > 0 && (temper.map(tem => { return <option value={tem}>{tem}</option> }))}
                 </select>
                 <select onChange={handleFilterFuente}>
                     <option value="Todos">Todos</option>
@@ -133,8 +127,8 @@ function Home(props) {
                 </select>
             </div>
         </div>
-        {num===0 && allDogs.length === 0 && queryState === false && <h2>No hay resultados</h2>}
-        {num===0 && searchDogs.length === 0 && queryState === true && <h2>No hay resultados</h2>}
+        {num === 0 && allDogs.length === 0 && queryState === false && <h2>No hay resultados</h2>}
+        {num === 0 && searchDogs.length === 0 && queryState === true && <h2>No hay resultados</h2>}
         <div className={style.Home}>
 
             {searchDogs.length > 0 && queryState === true && arraygroup(searchDogs)[numberpage - 1].map((element) => {

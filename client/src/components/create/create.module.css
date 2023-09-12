@@ -3,7 +3,6 @@
         background-color: white;
         display: flex;
         width: 100vw;
-        height: 100vh;
         justify-content: center;
         align-items: center;
     
@@ -21,10 +20,9 @@
     
     .RegForms {
         display: flex;
+        flex-direction: column;
         width: 400px;
-        height: 400px;
         background-color: rgba(24, 24, 24, 0.5);
-        border-radius: 20px;
         color: aliceblue;
         
        
@@ -87,9 +85,19 @@
     
     }
     
+    .inputNombre {
+        border-radius: 5px;
+        height: 25px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
     .input1 {
         border-radius: 5px;
         height: 25px;
+        width: 35px;
+        margin-left: 10px;
+        margin-right: 10px;
     }
     
     .input2 {
@@ -152,7 +160,16 @@
 }
 
 @media only screen and (min-width: 600px) {
- 
+
+
+    .FormConteiner {
+        flex-direction: column;
+    }
+
+    .listTemperaments{
+        display: flex;
+        flex-direction: column;
+    }
 
 }
 
