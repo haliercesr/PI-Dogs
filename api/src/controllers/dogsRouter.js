@@ -50,21 +50,29 @@ const getDogName = async (nombre) => {
 
 //POST | /dogs
 
-const postDogs = async (image, name, height, weight, yearsoflife,temperamentos) => {
+const postDogs = async (image, name, height, weight, life_span,selectedTemperaments) => {
+   
 
+    console.log(image, name, height, weight, life_span, selectedTemperaments)
     const [createdDog, created] = await Dog.findOrCreate({                                                                 //model query: busca segun las condiciones en where y si no las encuentra crea una entrada segun las condiciones. Luego devuelve la instancia creada o encontrada.Created tiene un valor booleano
         where: { name },
         defaults: {
             image,
             height,
             weight,
-            yearsoflife,
+            life_span,
         }
     })
 
+
+    console.log(created)
+    
+
+    
+
     // Obtiene los IDs de los temperamentos existentes o crea nuevos si no existen
   
-const temperamentIds = await Promise.all(temperamentos.map(async (temperamento) => {  //a mi array de temperamentos realizo un mapeo para ver si existe ese temperamento y si no existe se crea uno nuevo
+const temperamentIds = await Promise.all(selectedTemperaments.map(async (temperamento) => {  //a mi array de temperamentos realizo un mapeo para ver si existe ese temperamento y si no existe se crea uno nuevo
                                                                                       
     const [temperament, created] = await Temperaments.findOrCreate({                  //para cada temperamento se inicia una operacion asincronica uso async y await para esperar a que cada operacion termine 
       where: { name: temperamento.toUpperCase() },                                    //  toUpperCase() para evitar que se cree otro temperamento en minusculas, ademas la tabla de Temperamens esta en mayusculas            //busco en mi tabla si existe los temperamentos, si no existe creo uno nuevo
@@ -79,7 +87,8 @@ const temperamentIds = await Promise.all(temperamentos.map(async (temperamento) 
 
     
 
-    return createdDog
+   
+
 }
 
 module.exports = { getDogIdRaza, getDogName, getDogs, postDogs }

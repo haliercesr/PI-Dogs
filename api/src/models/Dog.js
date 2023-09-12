@@ -1,6 +1,10 @@
 const { DataTypes } = require('sequelize');
+const {validateWeightArray,validateHeightArray} = require('../utils/validateModels')
+
 // Exportamos una funcion que define el modelo
 // Luego le injectamos la conexion a sequelize.
+
+
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('dog', {
@@ -19,28 +23,44 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     height: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.ARRAY(DataTypes.DECIMAL),
       allowNull: false,
       validate: {
-        min: 0,
-        max: 2,
-      }
+        isTwoDecimalValues(value) {
+          if (!Array.isArray(value) || value.length !== 2) {
+            throw new Error('El campo height debe ser un array con dos valores.');
+          }
+    
+          if (typeof value[0] !== 'number' || typeof value[1] !== 'number') {
+            throw new Error('Los valores en el campo height deben ser números.');
+          }
+    
+          if (value[0] <= 0) {
+            throw new Error('El primer valor en el campo height debe ser mayor que cero.');
+          }
+    
+          if (value[1] >= 150) {
+            throw new Error('El segundo valor en el campo height debe ser menor que 150.');
+          }
+    
+          if (value[0] >= value[1]) {
+            throw new Error('El primer valor en el campo height debe ser menor que el segundo.');
+          }
+        },
+      },
     },
     weight: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.ARRAY(DataTypes.DECIMAL), // array con numeros
       allowNull: false,
-      validate: {
-        min: 0,
-        max: 150,
-      }
+     /* validate: {
+        customValidation(value) {
+          validateWeightArray(value);   //Para hacer la validacion de los pesos exporto la funcion de Utils
+        },
+      },*/
     },
-    yearsoflife: {
+    life_span: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      validate: {
-        min: 0,
-        max: 40,
-      }
     },
     created: {
       type: DataTypes.BOOLEAN,  //ESTO SIRVE PARA DIFERENCIAR PERROS QUE SON TRAIDOS DESDE LA BD O LA API A MI FRONTEND, CUANDO LOS TRAIGO DE LA BD SERA TRUE Y CUANDO LOS TRAIGO DE LA API CREO UNA PROPIEDAD "CREATED:FALSE" 

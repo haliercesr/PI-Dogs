@@ -3,10 +3,12 @@ import { useState, useEffect } from "react"
 import Loading from '../loading/loading'
 import { useHistory, Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import Validation from './Validation';
+import validations from './validations';
+import axios from 'axios';
 
 
 function Create(props) {
+   const URL = 'http://localhost:3001'
    const allDogsFilter = useSelector(state => state.allDogsFilter)
    const [allTemperaments, SetAllTemperaments] = useState([])
    const [user, setData] = useState(
@@ -17,6 +19,7 @@ function Create(props) {
          weightMin: 0,
          weightMax: 0,
          life_span: 0,
+         image:'',
          selectedTemperaments: [],
 
       })
@@ -31,15 +34,68 @@ function Create(props) {
 
    }, []);
 
-   const handleSubmit = () => {
+   const handleSubmit = async (e) => {
+      e.preventDefault()   //evitar que se recarge la pagina 
+      
+      try {
+         const{name,heightMin,heightMax,weightMin,weightMax,life_span,selectedTemperaments,image}=user
+         const valuesArray = Object.values(errors).join() //tomo los valores de errors
+         
+         if(valuesArray.length===4){
 
+            let userSubmit={
+               name,
+               height:[Number(heightMin),Number(heightMax)],
+               weight:[Number(weightMin),Number(weightMax)],
+               life_span:Number(life_span),
+               image,
+               selectedTemperaments,
+            }
+               
+               const response = await axios.post(`${URL}/dogs/`, userSubmit)
+               const {data}=response
+               const { created,createdUser } = data
+               console.log(response)
+               if (!created) {
+                  window.alert()
+                   
+               } else {
+                  window.alert("El perro ya se encuentra creado")
+                   
+               }
+
+
+      } else{ window.alert("El formulario contiene errores")}
+
+    
+
+
+     } catch (error) { window.alert("error") }
    }
+   
+
 
    const handleChange = (e) => {
       const property = e.target.value
       const name = e.target.name
       setData({ ...user, [name]: property })
-      setErrors(Validation({ ...user, [name]: property }))
+      setErrors(validations({ ...user, [name]: property }))
+      
+      if(e.target.type==="checkbox"){
+      if (user.selectedTemperaments.includes(property)) {
+         // Si ya está seleccionado, quítalo
+         const updatedTemperaments = user.selectedTemperaments.filter(
+            (temp) => temp !== property
+         );
+         setData({ ...user, selectedTemperaments: updatedTemperaments });
+         setErrors(validations({ ...user, selectedTemperaments: updatedTemperaments }))
+
+      } else {
+         // Si no está seleccionado, agrégalo
+         setData({ ...user, selectedTemperaments: [...user.selectedTemperaments, property] });
+         setErrors(validations({ ...user, selectedTemperaments: [...user.selectedTemperaments, property] }))
+      }
+   }
    }
 
 
@@ -49,8 +105,9 @@ function Create(props) {
    // const allTemperaments = ['Calm', 'Active', 'Friendly', 'Energetic', 'Loyal'];
 
    // Manejador de cambio cuando se selecciona o deselecciona un temperamento
-   const handleTemperamentChange = (e) => {
+ /* const handleTemperamentChange = (e) => {
       const selectedValue = e.target.value;
+      console.log(selectedValue)
 
       if (user.selectedTemperaments.includes(selectedValue)) {
          // Si ya está seleccionado, quítalo
@@ -62,7 +119,7 @@ function Create(props) {
          // Si no está seleccionado, agrégalo
          setData({ ...user, selectedTemperaments: [...user.selectedTemperaments, selectedValue] });
       }
-   };
+   };*/
 
    return (<div className={style.containerCreate}>
       <form className={style.RegForms} onSubmit={handleSubmit}>
@@ -70,34 +127,42 @@ function Create(props) {
          <div className={style.FormConteiner}>
             <div>
                <span>Crea un perro</span>
-               <div className={style.labelform11}>
+               <div className={errors.name ? style.labelform1 : style.labelform11}>
                   <div className={style.labelReg}>
                      <label >Nombre:</label>
                      <input placeholder=" Nombre" className={style.inputNombre} name="name" onChange={handleChange} />
                   </div>
                   <p className={style.p1}>{errors.name}</p>
                </div>
-               <div className={style.labelform11}>
+               <div className={errors.height ? style.labelform1 : style.labelform11}>
                   <div className={style.labelReg}>
-                     <label >Altura (M):</label>
+                     <label >Altura (cm):</label>
                      <input placeholder=" min" type='number' className={style.input1} name="heightMin" onChange={handleChange}/>
-                     <input placeholder=" max" type='number' className={style.input1} name="heighMax" onChange={handleChange}/>
+                     <input placeholder=" max" type='number' className={style.input1} name="heightMax" onChange={handleChange}/>
                   </div>
+                  <p className={style.p1}>{errors.height}</p>
                </div>
-               <div className={errors.email ? style.labelform1 : style.labelform11}>
+               <div className={errors.weight ? style.labelform1 : style.labelform11}>
                   <div className={style.labelReg}>
                      <label >Peso (Kg):</label>
                      <input placeholder=" min" type='number' className={style.input1} name="weightMin" onChange={handleChange}/>
                      <input placeholder=" max" type='number' className={style.input1} name="weightMax" onChange={handleChange}/>
                   </div>
-                  <p className={style.p1}>{errors.email}</p>
+                  <p className={style.p1}>{errors.weight}</p>
                </div>
-               <div className={errors.password ? style.labelform22 : style.labelform2}>
+               <div className={errors.life_span ? style.labelform1 : style.labelform11}>
                   <div className={style.labelReg}>
                      <label >Años de vida:</label>
-                     <input placeholder=" max" className={style.input2} name="life_span" onChange={handleChange} />
+                     <input placeholder=" max" type='number' className={style.input2} name="life_span" onChange={handleChange} />
                   </div>
-                  <p className={style.p1}>{errors.password}</p>
+                  <p className={style.p1}>{errors.life_span}</p>
+               </div>
+               <div className={errors.image ? style.labelform1 : style.labelform11}>
+                  <div className={style.labelReg}>
+                     <label >Imagen:</label>
+                     <input placeholder=" Link de imagen" type='string' className={style.input2} name="image" onChange={handleChange} />
+                  </div>
+                  <p className={style.p1}>{errors.image}</p>
                </div>
             </div>
             <div className={style.listTemperaments}>
@@ -110,7 +175,7 @@ function Create(props) {
                               type="checkbox"
                               value={temperament}
                               checked={user.selectedTemperaments.includes(temperament)}
-                              onChange={handleTemperamentChange}
+                              onChange={handleChange}
                            />
                            {temperament}
                         </label>
@@ -126,11 +191,12 @@ function Create(props) {
                   </ul>
                </div>
             </div>
+            <p className={style.p1}>{errors.selectedTemperaments}</p>
          </div>
          <div className={style.buttonSubmit}>
             <button type="submit">Crear</button>
          </div>
-         <span ><Link to="/" className={style.SpanLink}>Volver al inicio</Link></span>
+         <span ><Link to="/Home" className={style.SpanLink}>Volver</Link></span>
       </form >
 
    </div >)

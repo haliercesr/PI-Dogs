@@ -62,14 +62,14 @@ const getDogNameHandler = async (req, res) => {
 };
 
 const postDogsHandler=async(req,res)=>{
-    const{image,name,height,weight,yearsoflife,temperamentos}=req.body
+    const{image,name,height,weight,life_span,selectedTemperaments}=req.body
     
     try{
+     //image no la verifico por ahora
+     if ( !name || !height || !weight || !life_span || !selectedTemperaments || selectedTemperaments.length===0) return res.status(400).json({error:'Faltan datos'})
      
-     if (!image || !name || !height || !weight || !yearsoflife || !temperamentos || temperamentos.length===0) return res.status(400).json({error:'Faltan datos'})
-    
-   const response= await postDogs(image,name,height,weight,yearsoflife,temperamentos)
-
+   const response= await postDogs(image,name,height,weight,life_span,selectedTemperaments)
+   
   return res.status(200).send(response)
     }catch(error){error:error.message}
 }
