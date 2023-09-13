@@ -14,8 +14,8 @@ export default function validations(user) {
     //VALIDACIONES ALTURA
     if (!user.heightMin || !user.heightMax) {
         errors.height = "Por favor ingresar altura Min. y Max."
-    } else if (user.heightMin <= 0 || user.heightMax > 150) {
-        errors.height = "Debe ser mayor a 0 y menor a 150"
+    } else if (user.heightMin <= 0 || user.heightMax > 200) {
+        errors.height = "Debe ser mayor a 0 y menor a 200"
     }  else if (user.heightMin >= user.heightMax){
         errors.height = "Primer valor mayor que el segundo"
     } else { errors.height = "" }

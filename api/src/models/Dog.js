@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize');
-const {validateWeightArray,validateHeightArray} = require('../utils/validateModels')
+const {validateArray} = require('../utils/validateModels')
 
 // Exportamos una funcion que define el modelo
 // Luego le injectamos la conexion a sequelize.
@@ -26,21 +26,19 @@ module.exports = (sequelize) => {
       type: DataTypes.ARRAY(DataTypes.DECIMAL),
       allowNull: false,
       validate: {
-        isTwoDecimalValues(value) {
-          
-          throw new Error('El campo height debe ser un array con dos valores.');
-        
+        customValidation(value) {
+          validateArray(value);   //Para hacer la validacion de las alturas funcion de Utils
         },
-      },
+      }
     },
     weight: {
       type: DataTypes.ARRAY(DataTypes.DECIMAL), // array con numeros
       allowNull: false,
-     /* validate: {
+      validate: {
         customValidation(value) {
-          validateWeightArray(value);   //Para hacer la validacion de los pesos exporto la funcion de Utils
+          validateArray(value);   //Para hacer la validacion de los pesos desde Utils
         },
-      },*/
+      }
     },
     life_span: {
       type: DataTypes.INTEGER,

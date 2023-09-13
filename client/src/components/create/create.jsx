@@ -125,8 +125,8 @@ function Create(props) {
       <form className={style.RegForms} onSubmit={handleSubmit}>
 
          <div className={style.FormConteiner}>
-            <div>
-               <span>Crea un perro</span>
+            <div className={style.inputsConteiner}>
+            <h3>Crea un perro:</h3>
                <div className={errors.name ? style.labelform1 : style.labelform11}>
                   <div className={style.labelReg}>
                      <label >Nombre:</label>
@@ -166,7 +166,7 @@ function Create(props) {
                </div>
             </div>
             <div className={style.listTemperaments}>
-               <h3>Selecciona temperamentos:</h3>
+               <h4>Selecciona temperamentos:</h4>
                <ul>
                   {allTemperaments.map((temperament) => (
                      <li key={temperament}>

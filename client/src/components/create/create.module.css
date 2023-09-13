@@ -1,6 +1,6 @@
 @media only screen and (min-width: 200px) {
     .containerCreate{
-        background-color: white;
+        background-image: white;
         display: flex;
         width: 100vw;
         justify-content: center;
@@ -17,11 +17,20 @@
         width: 100%;
     
     }
+
+    .inputsConteiner {
+    
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    
+    }
     
     .RegForms {
         display: flex;
         flex-direction: column;
-        width: 400px;
         background-color: rgba(24, 24, 24, 0.5);
         color: aliceblue;
         
@@ -142,9 +151,26 @@
 
 @media only screen and (min-width: 600px) {
 
+    .containerCreate{
+        background-image: url('../../images/0e92ccc673d484b06c68044268e40a9d.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+    
+    }
+
 
     .FormConteiner {
+    
+        flex-direction: row;
+        align-items: flex-start;
+    
+    }
+
+    .inputsConteiner {
+    
         flex-direction: column;
+     
     }
 
     .listTemperaments{
@@ -156,6 +182,19 @@
 
 /*Extra large devices(large laptops and desktops, 1200px and up)*/
 @media only screen and (min-width: 1200px) {
+    
+    .containerCreate{
+        display: flex;
+        width: 100vw;
+        justify-content: center;
+        align-items: center;
+    
+    }
+
+    .listTemperaments{
+        flex-direction: wrap;
+    }
+
 
 
 }
