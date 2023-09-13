@@ -70,7 +70,7 @@ function Create(props) {
     
 
 
-     } catch (error) { window.alert("error") }
+     } catch (error) { window.alert(error.message) }
    }
    
 

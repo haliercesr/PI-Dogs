@@ -35,7 +35,7 @@ const getDogIdRazaHandler = async (req, res) => {
 
         return res.status(200).json(response)
 
-    } catch (error) { error: error.message }
+    } catch (error) { return res.status(500).json({ error: error.message })}
 };
 
 const getDogNameHandler = async (req, res) => {
@@ -66,12 +66,17 @@ const postDogsHandler=async(req,res)=>{
     
     try{
      //image no la verifico por ahora
-     if ( !name || !height || !weight || !life_span || !selectedTemperaments || selectedTemperaments.length===0) return res.status(400).json({error:'Faltan datos'})
+     if ( !image || !name || !height || !weight || !life_span || !selectedTemperaments || selectedTemperaments.length===0) return res.status(400).json({error:'Faltan datos'})
      
-   const response= await postDogs(image,name,height,weight,life_span,selectedTemperaments)
+   await postDogs(image,name,height,weight,life_span,selectedTemperaments)
    
-  return res.status(200).send(response)
-    }catch(error){error:error.message}
+  return res.status(200).send("se creo con exito")
+    }catch(error){ 
+        // Captura y maneja la excepción
+        console.error('Error:', error.message);
+
+        // Envía el error como respuesta
+        return res.status(500).json({ error: error.message });}
 }
 
 module.exports = {
