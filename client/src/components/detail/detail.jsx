@@ -35,11 +35,9 @@ function Detail(props) {
                      <h1 className={styles.titleDet}> {dog[0].name}</h1>
                   </div>
                   <div className={styles.textDetail}>
-                  <h2><span>Id:</span> {dog[0].id}</h2>
-                  <h2><span>Altura:</span> {dog[0].height.metric}</h2>
-                  <h2><span>Peso:</span> {dog[0].weight.metric}</h2>
-                  <h2><span>Temperamentos:</span> {dog[0].temperament}</h2>
-                  <h2><span>Años de vida:</span> {dog[0].life_span}</h2>
+                  <p>El {dog[0].name}  mide entre {dog[0].height.metric[0]} y {dog[0].height.metric[1]} centímetros de altura y pesa de {dog[0].weight.metric[0]} a {dog[0].weight.metric[1]} kilogramos.
+                      Su temperamento es una combinación de {dog[0].temperament}. Este encantador canino tiene una esperanza de vida
+                       de {dog[0].life_span}.</p>
                   </div>
                </div>
                <div className={styles.img}>
