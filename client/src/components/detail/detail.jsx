@@ -12,9 +12,17 @@ function Detail(props) {
    console.log(pathname)
    const { id } = useParams();
    const allDogs = useSelector(state => state.allDogs)
-   
+   const [zoomImage, setZoomImage] = useState(false);
 
    const [dog, setDog] = useState([]);
+
+   const zoomIn=()=>{
+      setZoomImage(true)
+   }
+
+   const zoomOut=()=>{
+      setZoomImage(false)
+   }
  
    useEffect(() => {                       
          if (allDogs.length>0) { 
@@ -30,6 +38,7 @@ function Detail(props) {
          {allDogs.length === 0 ? <LoadingComponent /> : null}
          {dog[0] && (
             <div className={styles.container}>
+               {zoomImage && <div className={styles.containerImgZoom}> <img onClick={zoomOut} className={styles.imgZoom} src={dog[0].image.url} alt="dog"/></div>}
                <div className={styles.Detail}>
                   <div className={styles.titleDetail}>
                      <h1 className={styles.titleDet}> {dog[0].name}</h1>
@@ -41,7 +50,7 @@ function Detail(props) {
                   </div>
                </div>
                <div className={styles.img}>
-                  <img src={dog[0].image.url} alt="dog"></img>
+                  <img onClick={zoomIn} src={dog[0].image.url} alt="dog"></img>
                </div>
             </div>
          )}
