@@ -48,7 +48,7 @@
 
       .paginationContenedor button:hover{
         transition: all 0.3s ease-in-out;
-        background-color: rgb(245, 248, 207)
+        color: rgb(63, 63, 63)
 
       }
       

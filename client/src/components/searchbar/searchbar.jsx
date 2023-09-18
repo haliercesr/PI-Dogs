@@ -43,7 +43,7 @@ function SearchBar(props) {
       </button>
       <input
         type="text"
-        placeholder="Buscar raza de perro..."
+        placeholder="Buscar raza ..."
         value={query}
         onChange={handleInputChange}
         className="search-input" 
