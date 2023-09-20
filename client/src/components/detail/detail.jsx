@@ -5,6 +5,10 @@ import { useSelector } from 'react-redux';
 import LoadingComponent from '../loading/loading';
 import Searchbar from '../searchbar/searchbar'
 import { withRouter } from 'react-router-dom';
+import regla from '../../images/regla.png';
+import balanza from '../../images/balanza.png'
+import vida from '../../images/vida.jpg';
+import temperamentos from '../../images/temperamentos.jpg'
 
 function Detail(props) {
    const { location } = props;
@@ -40,11 +44,11 @@ function Detail(props) {
              
             <div className={styles.container}>
                {zoomImage && <div className={styles.containerImgZoom}> <img onClick={zoomOut} className={styles.imgZoom} src={dog[0].image.url} alt="dog" /></div>}
-               <div className={styles.NameDog}>{dog[0].name}</div>
-               <div className={styles.AlturaDog}><span>Altura:<p>{dog[0].height.metric[0]}</p></span></div>
-               <div className={styles.PesoDog}>Peso:{dog[0].weight.metric[0]}</div>
-               <div className={styles.lifeDog}>Altura:{dog[0].life_span}</div>
-               <div className={styles.temperamentsDog}>Temperamentos:{dog[0].temperament}</div>
+               <div className={styles.NameDog}>{dog[0].name.toUpperCase()}</div>
+               <div className={styles.AlturaDog}><img src={regla}/><span><u>ALTURA(cm):</u><p>{dog[0].height.metric}</p></span></div>
+               <div className={styles.PesoDog}><img src={balanza}/><span><u>PESO(Kg):</u><p>{dog[0].weight.metric}</p></span></div>
+               <div className={styles.lifeDog}><img src={vida}/><span><u>AÑOS DE VIDA:</u><p>{dog[0].life_span}</p></span></div>
+               <div className={styles.temperamentsDog}><img src={temperamentos}/><span><u>TEMPERAMENTOS:</u><p>{dog[0].temperament}</p></span></div>
 
                
                <div className={styles.img}>

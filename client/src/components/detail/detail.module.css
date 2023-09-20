@@ -1,121 +1,121 @@
 /*Extra small devices(phones, 600px and down)*/
 @media only screen and (min-width: 200px) {
-    
-    .DetailContainerCard{
-    
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        justify-content: center;
-        width: 100%;
-        height: 100vh;
-        background-image:url('../../images/107018-huellas-de-perro.jpg');
-        background-size: 100% 100%;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-     }
 
-     .container{
-       
-        display: flex;
-        flex-direction: column-reverse;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        height: auto;
-        justify-content: center;
-        align-items: center;
-        background-color: rgb(255, 255, 255,0.5);
-        
-    }
+  .DetailContainerCard {
 
-    .Detail{
-        width: 100%;
-        height: auto;
-        flex-direction: column;
-        color:aliceblue;
-        background-color: rgba(10, 10, 10, 0.687);
-    
-       
-    }
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    background-image: url('../../images/huellasDark.jpg');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
 
-    .img {
-      display: flex;
-      width: 100%;
-      height: auto;
-      justify-content: center;
-      align-items: center;
-    }
+  .container {
 
-    .img img{
-        height: auto;
-        width: 100%;
-    }
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(255, 255, 255, 0.5);
 
-    .titleDetail {
-      display: flex;
-      width: 100%;
-      justify-content: center;
-      align-items: center;
-    }
-    
-    .titleDet {
-      color: rgb(214, 214, 208);
-      text-decoration: underline;
-     
-    }
-    
-    .textDetail {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      justify-content: center;
-      align-items: center;
-    }
-    
-    .textDetail h2 {
-      text-align: center;
-      font-size: 1.5rem;
-      font-family: 'Fredoka One', sans-serif;
-      color:rgb(210, 18, 18)
-    }
-  
-    .textDetail span{
-      color:rgb(255, 255, 255)
-    }
-    
-   
+  }
+
+  .Detail {
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    color: aliceblue;
+    background-color: rgba(10, 10, 10, 0.687);
+
+
+  }
+
+  .img {
+    display: flex;
+    width: 100%;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .img img {
+    height: auto;
+    width: 100%;
+  }
+
+  .titleDetail {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .titleDet {
+    color: rgb(214, 214, 208);
+    text-decoration: underline;
+
+  }
+
+  .textDetail {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .textDetail h2 {
+    text-align: center;
+    font-size: 1.5rem;
+    font-family: 'Fredoka One', sans-serif;
+    color: rgb(210, 18, 18)
+  }
+
+  .textDetail span {
+    color: rgb(255, 255, 255)
+  }
+
+
 
 
 }
 
 @media only screen and (min-width: 600px) {
-   
 
-   
 
-    .Detail{
-        width: 100%;
-        height: auto;
-        flex-direction: column;
-        color:aliceblue;
-        background-color: rgba(10, 10, 10, 0.687);
-    }
 
-    .img{
-      height: auto;
-      width: 100%;
-    }
 
-   
+  .Detail {
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    color: aliceblue;
+    background-color: rgba(10, 10, 10, 0.687);
+  }
 
-    .textDetail h2 {
-      text-align: center;
-      margin: 5px;
-      font-size: 1rem;
-      font-family: 'Fredoka One', sans-serif;
-      color:rgb(210, 18, 18)
-    }
+  .img {
+    height: auto;
+    width: 100%;
+  }
+
+
+
+  .textDetail h2 {
+    text-align: center;
+    margin: 5px;
+    font-size: 1rem;
+    font-family: 'Fredoka One', sans-serif;
+    color: rgb(210, 18, 18)
+  }
 
 
 
@@ -125,96 +125,155 @@
 /*Extra large devices(large laptops and desktops, 1200px and up)*/
 @media only screen and (min-width: 1200px) {
 
-  .DetailContainerCard{
-    
+  .DetailContainerCard {
+
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: center;
     width: 100%;
     height: 100vh;
-    background-image:url('../../images/107018-huellas-de-perro.jpg');
+    background-image: url('../../images/huellasDark.jpg');
     background-size: 100% 100%;
     background-repeat: no-repeat;
     background-attachment: fixed;
- }
+  }
 
-  .container{
-       
-   position:relative;
-    width: 800px;
-    height: 500px;
+  .container {
+
+    position: relative;
+    width: 1050px;
+    height: 575px;
     justify-content: center;
     align-items: center;
-    background-color: rgba(10, 10, 10, 0.687);
-  
-    
-}
-
-.NameDog{
-  position:absolute;
-  font-size: 40px;
-  text-decoration: underline;
-  left:270px;
-  top:0px;
-  color: rgb(227, 231, 3);
-}
-
-.AlturaDog{
-  position:absolute;
-  left:100px;
-  top:100px
-}
-
-.PesoDog{
-  position:absolute;
-  left:700px;
-  top:170px
-}
-
-.lifeDog{
-  position:absolute;
-  left:100px;
-  top:300px
-}
-
-span{
-  display: flex;
-  flex-direction: column;
-}
+    background-color: rgba(10, 10, 10, 0);
+    border-radius: 30px;
 
 
-    .img{
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      height: 350px;
-      width: 500px;
-    }
+  }
 
-    .img img{
-       width: 500px;
-        height: 350px;
-        border-radius: 600px;
-        cursor: zoom-in;
-    }
+  /*SECCION NOMBRE*/
 
-    .containerImgZoom{
-      background-color: rgba(5, 5, 5, 0.822);
-      position:absolute;
-      z-index: 999;
-      width: 100%;
-      height: 100%;
-      
-    }
+  .NameDog {
+    position: absolute;
+    font-size: 40px;
+    text-decoration: underline;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 20px;
+    font-weight: 600;
+    color: rgb(255, 255, 255);
+  }
 
-    .imgZoom{
-      width: 800px;
-      height: auto;
-      cursor: zoom-out;
-      
-    }
+  /*SECCION ALTURA*/
 
-  
+  .AlturaDog {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    left: 140px;
+    top: 100px;
+
+  }
+
+
+
+  /*SECCION PESO*/
+
+  .PesoDog {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    left: 750px;
+    top: 170px
+  }
+
+  .PesoDog img {
+    width: 90px;
+  }
+
+  /*SECCION AÑOS DE VIDA*/
+
+  .lifeDog {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    left: 60px;
+    top: 340px
+  }
+
+  /*SECCION TEMPERAMENTOS*/
+
+  .temperamentsDog {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    left: 500px;
+    top: 455px
+  }
+
+  .temperamentsDog img {
+    width: 95px;
+    margin-top: 10px;
+  }
+
+  /*TITULOS Y PARRAFOS*/
+
+  .container span {
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    height: 10px;
+    color: rgb(255, 186, 36);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 600;
+  }
+
+  .container p {
+    margin: 0px;
+    color: white;
+    text-decoration: none;
+  }
+
+
+  .img {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    height: 350px;
+    width: 500px;
+  }
+
+  .img img {
+    width: 500px;
+    height: 350px;
+    border-radius: 600px;
+    cursor: zoom-in;
+  }
+
+  .containerImgZoom {
+    background-color: rgba(5, 5, 5, 0.822);
+    position: absolute;
+    z-index: 999;
+    width: 100%;
+    height: 100%;
+
+  }
+
+  .imgZoom {
+    width: auto;
+    height: 570px;
+    cursor: zoom-out;
+
+  }
+
+
+  img {
+    width: 65px;
+    height: 50px;
+    background-color: transparent;
+  }
+
+
 
 }
