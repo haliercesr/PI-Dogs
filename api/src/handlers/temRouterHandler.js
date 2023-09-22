@@ -1,8 +1,10 @@
-const getTem=require('../controllers/getTem');
+const {getTem}=require('../controllers/getTem');
 
 const getTemHandler=(req,res)=>{ 
-    res.status(200).send("holaa")}
+
+    const response=getTem()
+    res.status(200).json(response)}
+
 
 module.exports={
-    getTemHandler,
-}
+    getTemHandler}
