@@ -8,9 +8,9 @@
         width: 215px;
         background-image: linear-gradient(to right top, #c6551c, #cb6f23, #cf8730, #d39e41, #d6b456);
         border-radius: 15px;
-        box-shadow: 15px 12px 21px -13px #00000057;
-        -webkit-box-shadow: 15px 12px 21px -13px rgba(0,0,0,.34);
-        -moz-box-shadow: 15px 12px 21px -13px rgba(0,0,0,.34);
+        box-shadow: 15px 12px 21px -13px #000000e7;
+        -webkit-box-shadow: 15px 12px 21px -13px rgba(0, 0, 0, 0.726);
+        -moz-box-shadow: 15px 12px 21px -13px rgba(0, 0, 0, 0.685);
         text-decoration: none;
     }
 

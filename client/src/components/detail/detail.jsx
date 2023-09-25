@@ -40,20 +40,17 @@ function Detail(props) {
    return (
       <div className={styles.DetailContainerCard}>
          {allDogs.length === 0 ? <LoadingComponent /> : null}
+         {dog[0] && zoomImage && <div className={styles.containerImgZoom}> <img onClick={zoomOut} className={styles.imgZoom} src={dog[0].image.url} alt="dog" /></div>}
          {dog[0] && (
-             
             <div className={styles.container}>
-               {zoomImage && <div className={styles.containerImgZoom}> <img onClick={zoomOut} className={styles.imgZoom} src={dog[0].image.url} alt="dog" /></div>}
                <div className={styles.NameDog}>{dog[0].name.toUpperCase()}</div>
-               <div className={styles.AlturaDog}><img src={regla}/><span><u>ALTURA(cm):</u><p>{dog[0].height.metric}</p></span></div>
-               <div className={styles.PesoDog}><img src={balanza}/><span><u>PESO(Kg):</u><p>{dog[0].weight.metric}</p></span></div>
-               <div className={styles.lifeDog}><img src={vida}/><span><u>AÑOS DE VIDA:</u><p>{dog[0].life_span}</p></span></div>
-               <div className={styles.temperamentsDog}><img src={temperamentos}/><span><u>TEMPERAMENTOS:</u><p>{dog[0].temperament}</p></span></div>
-
-               
                <div className={styles.img}>
                   <img onClick={zoomIn} src={dog[0].image.url} alt="dog"></img>
                </div>
+               <div className={styles.AlturaDog}><img id={styles.DogImg} src={regla}/><span><u>ALTURA(cm):</u><p>{dog[0].height.metric}</p></span></div>
+               <div className={styles.PesoDog}><img id={styles.DogImg} src={balanza}/><span><u>PESO(Kg):</u><p>{dog[0].weight.metric}</p></span></div>
+               <div className={styles.lifeDog}><img id={styles.DogImg} src={vida}/><span><u>AÑOS DE VIDA:</u><p>{dog[0].life_span}</p></span></div>
+               <div className={styles.temperamentsDog}><img id={styles.DogImg} src={temperamentos}/><span><u>TEMPERAMENTOS:</u><p>{dog[0].temperament}</p></span></div>
             </div>
          )}
       </div>

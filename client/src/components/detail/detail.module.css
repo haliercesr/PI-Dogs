@@ -1,88 +1,151 @@
 /*Extra small devices(phones, 600px and down)*/
 @media only screen and (min-width: 200px) {
 
+ 
+
+  .container {
+
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(10, 10, 10, 0);
+    border-radius: 30px;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+  }
+
   .DetailContainerCard {
 
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     flex-direction: column;
     justify-content: center;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     background-image: url('../../images/huellasDark.jpg');
     background-size: 100% 100%;
     background-repeat: no-repeat;
     background-attachment: fixed;
   }
 
-  .container {
 
+
+  /*SECCION NOMBRE*/
+
+  .NameDog {   
+    font-size: 40px;
+    text-decoration: underline;
+    font-weight: 600;
+    color: rgb(255, 255, 255);
+    margin:20px;
+  }
+
+  /*SECCION ALTURA*/
+
+  .AlturaDog {
     display: flex;
-    flex-direction: column-reverse;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: auto;
-    justify-content: center;
-    align-items: center;
-    background-color: rgb(255, 255, 255, 0.5);
+    flex-direction: row;
+    margin:20px;
 
   }
 
-  .Detail {
-    width: 100%;
-    height: auto;
+
+
+  /*SECCION PESO*/
+
+  .PesoDog {
+    display: flex;
+    flex-direction: row;
+    margin:20px;
+  }
+
+  .PesoDog img {
+    width: 90px;
+  }
+
+  /*SECCION AÑOS DE VIDA*/
+
+  .lifeDog {
+    display: flex;
+    flex-direction: row;
+    margin:20px;
+  }
+
+  /*SECCION TEMPERAMENTOS*/
+
+  .temperamentsDog {
+    display: flex;
+    flex-direction: row;
+    margin:20px;
+  }
+
+  .temperamentsDog img {
+    width: 95px;
+    margin-top: 10px;
+  }
+
+  /*TITULOS Y PARRAFOS*/
+
+  .container span {
+    display: flex;
     flex-direction: column;
-    color: aliceblue;
-    background-color: rgba(10, 10, 10, 0.687);
-
-
+    font-size: 20px;
+    height: 10px;
+    color: rgb(255, 186, 36);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 600;
   }
+
+  .container p {
+    margin: 0px;
+    color: white;
+    text-decoration: none;
+  }
+
 
   .img {
-    display: flex;
-    width: 100%;
-    height: auto;
-    justify-content: center;
-    align-items: center;
+   display: flex;
   }
 
   .img img {
+    width: 100%;
     height: auto;
+    cursor: zoom-in;
+  }
+
+  .containerImgZoom {
+    background-color: rgba(5, 5, 5, 0.822);
+    position: absolute;
+    z-index: 999;
     width: 100%;
+    height: 100vh;
+
   }
 
-  .titleDetail {
-    display: flex;
+  .imgZoom {
+    margin-top: 50px;
     width: 100%;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .titleDet {
-    color: rgb(214, 214, 208);
-    text-decoration: underline;
+    height: auto;
+    cursor: zoom-out;
 
   }
 
-  .textDetail {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
+
+  #DogImg {
+    width: 65px;
+    height: 50px;
+    background-color: transparent;
   }
 
-  .textDetail h2 {
-    text-align: center;
-    font-size: 1.5rem;
-    font-family: 'Fredoka One', sans-serif;
-    color: rgb(210, 18, 18)
-  }
 
-  .textDetail span {
-    color: rgb(255, 255, 255)
-  }
+
+ 
+
+ 
+
 
 
 
@@ -91,48 +154,13 @@
 
 @media only screen and (min-width: 600px) {
 
-
-
-
-  .Detail {
-    width: 100%;
-    height: auto;
-    flex-direction: column;
-    color: aliceblue;
-    background-color: rgba(10, 10, 10, 0.687);
-  }
-
-  .img {
-    height: auto;
-    width: 100%;
-  }
-
-
-
-  .textDetail h2 {
-    text-align: center;
-    margin: 5px;
-    font-size: 1rem;
-    font-family: 'Fredoka One', sans-serif;
-    color: rgb(210, 18, 18)
-  }
-
-
-
-
-}
-
-/*Extra large devices(large laptops and desktops, 1200px and up)*/
-@media only screen and (min-width: 1200px) {
-
   .DetailContainerCard {
 
     display: flex;
     align-items: center;
     flex-direction: column;
-    justify-content: center;
-    width: 100%;
-    height: 100vh;
+    justify-content: start;
+    max-width: 100%;
     background-image: url('../../images/huellasDark.jpg');
     background-size: 100% 100%;
     background-repeat: no-repeat;
@@ -142,8 +170,8 @@
   .container {
 
     position: relative;
-    width: 1050px;
-    height: 575px;
+    width: 600px;
+    height: 700px;
     justify-content: center;
     align-items: center;
     background-color: rgba(10, 10, 10, 0);
@@ -163,6 +191,7 @@
     top: 20px;
     font-weight: 600;
     color: rgb(255, 255, 255);
+    margin: 0px;
   }
 
   /*SECCION ALTURA*/
@@ -171,9 +200,9 @@
     position: absolute;
     display: flex;
     flex-direction: row;
-    left: 140px;
-    top: 100px;
-
+    left: 0px;
+    top: 150px;
+    margin: 0px;
   }
 
 
@@ -184,8 +213,9 @@
     position: absolute;
     display: flex;
     flex-direction: row;
-    left: 750px;
-    top: 170px
+    left: 440px;
+    top: 170px;
+    margin: 0px;
   }
 
   .PesoDog img {
@@ -198,8 +228,9 @@
     position: absolute;
     display: flex;
     flex-direction: row;
-    left: 60px;
-    top: 340px
+    left: 0px;
+    top: 520px;
+    margin: 0px;
   }
 
   /*SECCION TEMPERAMENTOS*/
@@ -208,8 +239,9 @@
     position: absolute;
     display: flex;
     flex-direction: row;
-    left: 500px;
-    top: 455px
+    left: 410px;
+    top: 500px;
+    margin: 0px;
   }
 
   .temperamentsDog img {
@@ -241,11 +273,11 @@
     align-items: flex-start;
     justify-content: center;
     height: 350px;
-    width: 500px;
+    width: 400px;
   }
 
   .img img {
-    width: 500px;
+    width: 400px;
     height: 350px;
     border-radius: 600px;
     cursor: zoom-in;
@@ -257,23 +289,74 @@
     z-index: 999;
     width: 100%;
     height: 100%;
-
   }
 
   .imgZoom {
-    width: auto;
-    height: 570px;
+    width: 100%;
+    height: auto;
     cursor: zoom-out;
 
   }
 
 
-  img {
-    width: 65px;
-    height: 50px;
-    background-color: transparent;
+
+
+
+
+
+
+
+
+}
+
+/*Extra large devices(large laptops and desktops, 1200px and up)*/
+@media only screen and (min-width: 1200px) {
+
+  .DetailContainerCard {
+
+    position: relative;
   }
 
+  .container {
+    width: 750px;
+    height: 700px;
+  }
+
+
+  .NameDog {
+    font-size: 40px;
+  }
+ 
+  .img {
+  
+    width: 500px;
+  }
+
+  .img img {
+    width: 500px;
+  }
+
+  .PesoDog {
+    left: 580px;
+   
+  }
+
+  .temperamentsDog {
+    top: 530px;
+  }
+
+  .containerImgZoom {
+    background-color: rgba(5, 5, 5, 0.822);
+    position: absolute;
+    z-index: 999;
+    width: 100%;
+    height: 100%;
+  }
+
+  .imgZoom {
+    width: auto;
+    height: 90%;
+  }
 
 
 }

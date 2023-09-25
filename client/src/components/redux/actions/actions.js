@@ -8,6 +8,7 @@ export const getDogs = () => {
 
         try {
             const { data } = await axios.get(`${URL}/dogs`)
+            console.log(data)
             return dispatch(
                 {
                     type: GET_DOGS,

@@ -1,14 +1,17 @@
 import style from "../create/create.module.css"
 import { useState, useEffect } from "react"
 import Loading from '../loading/loading'
-import { useHistory, Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { withRouter,useHistory, Link } from 'react-router-dom';
+import { useSelector, useDispatch} from 'react-redux';
+import { getDogs } from '../redux/actions/actions';
 import validations from './validations';
 import axios from 'axios';
 
 
 function Create(props) {
    const URL = 'http://localhost:3001'
+   const history = useHistory();
+   const dispatch = useDispatch()
    const allDogsFilter = useSelector(state => state.allDogsFilter)
    const [allTemperaments, SetAllTemperaments] = useState([])
    const [user, setData] = useState(
@@ -37,13 +40,13 @@ function Create(props) {
 
    const handleSubmit = async (e) => {
       e.preventDefault()   //evitar que se recarge la pagina 
+   
 
       try {
          if(user.name==='')window.alert('Por favor completar el formulario')
 
          const { name, heightMin, heightMax, weightMin, weightMax, life_span, selectedTemperaments, image } = user
          const valuesArray = Object.values(errors).join() //tomo los valores de errors
-          console.log(valuesArray.length)
          if (valuesArray.length === 5 ) {
             
             let userSubmit = {
@@ -60,6 +63,7 @@ function Create(props) {
             console.log(data)
             if (data) {
                window.alert("El perro se creo exitosamente")
+               dispatch(getDogs())
 
             } else {
                window.alert("El perro ya se encuentra creado, por favor elije otro nombre")
@@ -84,6 +88,7 @@ function Create(props) {
       const name = e.target.name
       setData({ ...user, [name]: property })
       setErrors(validations({ ...user, [name]: property }))
+     
 
       if (e.target.type === "checkbox") {
          if (user.selectedTemperaments.includes(property)) {
@@ -101,6 +106,12 @@ function Create(props) {
          }
       }
    }
+
+   const volverHome = () => {
+     
+      history.push('/home');
+      
+    };
 
 
 
@@ -141,39 +152,39 @@ function Create(props) {
                <div className={errors.height ? style.labelform1 : style.labelform11}>
                   <div className={style.labelReg}>
                      <label >Altura (cm):</label>
-                     <input placeholder=" min" type='number' className={style.input1} name="heightMin" onChange={handleChange} />
-                     <input placeholder=" max" type='number' className={style.input1} name="heightMax" onChange={handleChange} />
+                     <input placeholder="min" type='number' className={style.input1} name="heightMin" onChange={handleChange} />
+                     <input placeholder="max" type='number' className={style.input1} name="heightMax" onChange={handleChange} />
                   </div>
                   <p className={style.p1}>{errors.height}</p>
                </div>
                <div className={errors.weight ? style.labelform1 : style.labelform11}>
                   <div className={style.labelReg}>
                      <label >Peso (Kg):</label>
-                     <input placeholder=" min" type='number' className={style.input1} name="weightMin" onChange={handleChange} />
-                     <input placeholder=" max" type='number' className={style.input1} name="weightMax" onChange={handleChange} />
+                     <input placeholder="min" type='number' className={style.input1} name="weightMin" onChange={handleChange} />
+                     <input placeholder="max" type='number' className={style.input1} name="weightMax" onChange={handleChange} />
                   </div>
                   <p className={style.p1}>{errors.weight}</p>
                </div>
                <div className={errors.life_span ? style.labelform1 : style.labelform11}>
                   <div className={style.labelReg}>
                      <label >Años de vida:</label>
-                     <input placeholder=" max" type='number' className={style.input2} name="life_span" onChange={handleChange} />
+                     <input placeholder=" max" type='number' className={style.añosDeVida} name="life_span" onChange={handleChange} />
                   </div>
                   <p className={style.p1}>{errors.life_span}</p>
                </div>
                <div className={errors.image ? style.labelform1 : style.labelform11}>
                   <div className={style.labelReg}>
                      <label >Imagen:</label>
-                     <input placeholder=" Link de imagen" type='string' className={style.input2} name="image" onChange={handleChange} />
+                     <input placeholder=" http://example.com/img" type='string' className={style.linkImagen} name="image" onChange={handleChange} />
                   </div>
                   <p className={style.p1}>{errors.image}</p>
                </div>
             </div>
             <div className={style.listTemperaments}>
                <h4>Selecciona temperamentos:</h4>
-               <ul>
+               <ul className={style.listaUl}>
                   {allTemperaments.map((temperament) => (
-                     <li key={temperament}>
+                     <li className={style.listaTemps1} key={temperament}>
                         <label>
                            <input
                               type="checkbox"
@@ -191,7 +202,7 @@ function Create(props) {
                <h4>Temperamentos seleccionados:</h4>
                <ul  >
                   {user.selectedTemperaments.map((temperament) => (
-                     <li key={temperament}>✅{temperament}</li>
+                     <li className={style.listaTemps2} key={temperament}>✅{temperament}</li>
                   ))}
                </ul>
             </div>
@@ -200,10 +211,11 @@ function Create(props) {
          <div className={style.buttonSubmit}>
             <button type="submit">Crear</button>
          </div>
-         <span ><Link to="/home" className={style.SpanLink}>Volver</Link></span>
+         <span ><button onClick={volverHome} className={style.spanButton}><u>Volver al inicio</u></button></span>
       </form >
+     
 
    </div >)
 }
 
-export default Create;
+export default withRouter(Create);

@@ -13,9 +13,9 @@ function Card(props) {
          
          <Link to={`/detail/${id}`}>
           <div className={styles.Divimg}>
-            <img src={image.url?image.url:image} alt='dog'/> {/* esto es para filtrar, hay que hacerlo en el servidor */}
+            <img src={image.url} alt='dog'/> {/* esto es para filtrar, hay que hacerlo en el servidor */}
           </div>       
-         <div className={styles.Divtext}> 
+         <div className={styles.Divtext} > 
            <h1 >{name}</h1>
            <h2>Temperamentos</h2>
            <h3 >{temperament}</h3> 

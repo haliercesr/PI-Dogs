@@ -51,8 +51,8 @@ function Home(props) {
         allDogs.length===0 && dispatch(getDogs())
         // Obtener la lista de temperamentos
         temper.length===0 && dispatch(getTemperaments())
-        console.log(allDogs)
         setTemper(allDogsFilter)
+       
         
 
     }, [allDogsFilter,location]);
@@ -97,6 +97,7 @@ function Home(props) {
     const handleFilterFuente = (e) => {
         const evento = e.target.value
         dispatch(filterApi(evento))
+        setNum(0)   //para cuando la base de datos no tiene perros, hay un mensaje "NO HAY RESULTADOS"        
     }
 
     const cards=(searchDogs)=>{
@@ -106,7 +107,7 @@ function Home(props) {
                 id={element.id}
                 name={element.name}
                 image={element.image}
-                temperament={element.temperament?element.temperament:element.temperaments.map(tem=>tem.name)}
+                temperament={element.temperament}
                 weight={element.weight}
 
             />
@@ -121,7 +122,6 @@ function Home(props) {
         {searchDogs.length === 0 && num !== 0 && queryState === true ? <LoadingComponent /> : null}
         {allDogs.length === 0 && num !== 0 && queryState === false ? <LoadingComponent /> : null}
 
-        {pagination()}
         <div>
             <h3>Filtrar por:</h3>
             <div >

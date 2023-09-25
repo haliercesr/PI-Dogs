@@ -49,13 +49,13 @@ const rootReducer = (state = initialState, { type, payload }) => {
             }
             case FILTERbdd:
                 let filteredDogs = [];
-                 console.log(state.allDogs)
                 if (payload === "Todos") {
                     filteredDogs = state.allDogsCopia;
                 } else if (payload === "API") {
-                    filteredDogs = state.allDogs.filter((dog) => dog.created === null);
+                    filteredDogs= state.allDogsCopia.filter((dog) => typeof dog.id ==="number");
+                    console.log(filteredDogs)
                 } else if (payload === "BDD") {
-                    filteredDogs = state.allDogs.filter((dog) => dog.created === true);
+                    filteredDogs = state.allDogsCopia.filter((dog) => dog.created === true);
                 }
             
                 return {

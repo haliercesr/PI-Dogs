@@ -6,9 +6,21 @@ const { getDogIdRaza, getDogName, getDogs, postDogs } = require('../controllers/
 const getDogsHandler = async (req, res) => {
     try {
         response= await getDogs();
-       response.map(dog=>console.log(dog.image))
-
-        return res.status(200).json(response);
+        
+       const responseFiltrado=response.map(dog=>{
+        let temps=""
+        if(typeof dog.image==="string"){
+            dog.image={url:dog.image}
+            for(let i=0;i<dog.temperaments.length;i++){     //PARA COMPROBAR SI DOG.TEMPERAMENTS ES UN ARRAY PODEMOS USAR OTROS METODOS COMO Array.isArray() O Length
+                temps=temps+" ,"+dog.temperaments[i].name    //typeof dog.temperaments==="array"  ESTO DEVOLVERA FALSE PORQUE TYPEOF TOMA UNA VARIABLE Y COMPARA EL TIPO DE DATOS,JAVASCRIPT ESTA ECHO CON OBJETOS Y UN ARRAY EN JAVASCRIPT ES UN OBJETO 
+        }                                                   // DESPUES CAMBIAR TEMPERAMENTS POR TEMPERAMENT EN TODO
+            dog.temperament=`${temps}`     
+             
+        }
+        return dog
+        })  //cambio las propiedades de los perros creados desde el frontend para que se rendericen
+        console.log(responseFiltrado)  
+        return res.status(200).json(responseFiltrado);
     } catch (error) {
         console.log(error.message)
         res.status(400).json({ error: error.message });  //UNA MEJOR MANERA DE MANEJAR EL ERROR PUEDE SER DISCRIMINANDO A QUE INSTANCIA PERTENECE

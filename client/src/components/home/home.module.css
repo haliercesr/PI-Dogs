@@ -39,7 +39,7 @@
         padding: 0.4em 1.3em;
         font-size: 14px;
         border-radius: 0.5em;
-        background-color:rgb(243, 238, 238);
+        background-color:rgb(243, 238, 238,0.5);
         border: 1px solid #9f9d9d;
         transition: all .3s;
         cursor:pointer;

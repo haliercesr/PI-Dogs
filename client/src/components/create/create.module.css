@@ -1,9 +1,10 @@
 @media only screen and (min-width: 200px) {
+   
     .containerCreate{
-        background-image: white;
         display: flex;
+        flex-direction: column;
         width: 100vw;
-        height: 100vh;
+        min-height: 100vh;
         justify-content: center;
         align-items: center;
         background-image: url('../../images/perros.png');
@@ -39,6 +40,19 @@
         align-items: center;
         justify-content: center;
     }
+
+    .listaTemps1{
+        display: flex;
+        align-items: flex-start;
+        margin-left:22px;
+    }
+
+    .listaTemps2{
+        display: flex;
+        align-items: flex-start;
+
+    }
+
 
     
     .RegForms {
@@ -90,21 +104,33 @@
     .inputNombre {
         border-radius: 5px;
         height: 25px;
-        margin-left: 10px;
-        margin-right: 10px;
+        margin-left: 5px;
+        margin-right: 5px;
+        width: 123px;
     }
 
     .input1 {
         border-radius: 5px;
         height: 25px;
-        width: 35px;
-        margin-left: 10px;
-        margin-right: 10px;
+        width: 40px;
+        margin-left: 5px;
+        margin-right: 5px;
     }
     
-    .input2 {
+    .añosDeVida {
         border-radius: 5px;
         height: 25px;
+        width: 95px;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+    .linkImagen {
+        border-radius: 5px;
+        height: 25px;
+        width: 130px;
+        margin-left: 5px;
+        margin-right: 5px;
     }
     
     .label2 {
@@ -154,9 +180,15 @@
          box-shadow: 0 0 0 0 black;
      }
     
-    .SpanLink{
+    .spanButton{
+        background-color: transparent;
         color: white;
-    
+        border: transparent;
+        cursor: pointer;
+    }
+
+    .RegForms span {
+        margin:10px;
     }
    
 }
@@ -188,6 +220,14 @@
     .listTemperaments{
         display: flex;
         flex-direction: column;
+    }
+
+    .listaUl{
+        padding-left: 0px;
+    }
+
+    .listaTemps1{
+        margin-left: 0px;
     }
 
 }
