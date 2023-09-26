@@ -30,7 +30,7 @@ function Detail(props) {
 
    useEffect(() => {
       if (allDogs.length > 0) {
-         const data = allDogs.filter(dog => dog.id === Number(id))
+         const data = allDogs.filter(dog => !Number(id)?dog.id===id:dog.id === Number(id))  //filtro el resultado segun si el id es una string o un numero
          setDog(data);
 
       }

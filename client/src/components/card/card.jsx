@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 
 function Card(props) {
    const{name,image,temperament,weight,id}=props
+   
 
 
    return (
@@ -13,7 +14,7 @@ function Card(props) {
          
          <Link to={`/detail/${id}`}>
           <div className={styles.Divimg}>
-            <img src={image.url} alt='dog'/> {/* esto es para filtrar, hay que hacerlo en el servidor */}
+            <img src={image.url} alt='dog'/> 
           </div>       
          <div className={styles.Divtext} > 
            <h1 >{name}</h1>

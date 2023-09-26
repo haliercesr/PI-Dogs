@@ -1,5 +1,6 @@
 import { GET_DOGS, SEARCH_DOGS, QUERY_DOGS, ORDER, FILTER, TEMPERAMENTS, FILTERbdd } from './types';
 import axios from 'axios';
+const {filtrarDogsCreados}=require('../../utils/filtrarDogsCreados')
 
 const URL = 'http://localhost:3001'
 
@@ -8,11 +9,13 @@ export const getDogs = () => {
 
         try {
             const { data } = await axios.get(`${URL}/dogs`)
-            console.log(data)
+
+            const data1=filtrarDogsCreados(data) //filtro los datos del server para los perros creados en la BBD, TENGO QUE HACERLO EN EL SERVER Y NO EN EL FONTEND
+            
             return dispatch(
                 {
                     type: GET_DOGS,
-                    payload: data
+                    payload: data1
                 }
             )
         } catch (error) { window.alert(error.message) }
@@ -24,10 +27,11 @@ export const searchDogs = (raza) => {
 
         try {
             const { data } = await axios.get(`${URL}/dogs/name?name=${raza}`)
+            const data1=filtrarDogsCreados(data) //filtro los datos del server para los perros creados en la BBD, TENGO QUE HACERLO EN EL SERVER Y NO EN EL FONTEND
             return dispatch(
                 {
                     type: SEARCH_DOGS,
-                    payload: data
+                    payload: data1
                 }
             )
         } catch (error) { window.alert(error.message) }
