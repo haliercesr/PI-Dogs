@@ -7,9 +7,10 @@ import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import Card from '../card/card'
 import LoadingComponent from '../loading/loading';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
 function Home(props) {
-    const { location } = props;
+    const { location, URLfrontend } = props;
     const pathname = location.pathname;
     const allDogs = useSelector(state => state.allDogs)
     const searchDogs = useSelector(state => state.searchDogs)
@@ -52,10 +53,12 @@ function Home(props) {
         // Obtener la lista de temperamentos
         temper.length===0 && dispatch(getTemperaments())
         setTemper(allDogsFilter)
-       
+       console.log(queryState)
+       console.log(num)
+       console.log(searchDogs)
         
 
-    }, [allDogsFilter,location]);
+    }, [allDogsFilter,location,queryState,searchDogs]);
 
        
  
@@ -75,6 +78,8 @@ function Home(props) {
     }
 
     function handleOrder(e) {
+        if (queryState===true && searchDogs.length===0) return <h2>No hay resultados</h2>
+        if (queryState===false && allDogs.length===0) return <h2>No hay resultados</h2>
         const types = queryState ? "searchDogs" : "allDogs"
         const evento = e.target.value
         if (evento === 'A' || evento === 'D') dispatch(orderDogs([evento, "name", types]))
@@ -85,23 +90,26 @@ function Home(props) {
     }
 
     const handleFilter = (e) => {
-
+       
         const evento = e.target.value
         dispatch(filterDogs(String(evento)))
-        queryState === true && setNum(allDogs.length)
-        queryState === false && setNum(searchDogs.length)
-        console.log(evento)
+        setNum(num+1)
+        
 
     }
 
     const handleFilterFuente = (e) => {
+       
         const evento = e.target.value
         dispatch(filterApi(evento))
-        setNum(0)   //para cuando la base de datos no tiene perros, hay un mensaje "NO HAY RESULTADOS"        
+        setNum(num+1)
     }
 
+
     const cards=(searchDogs)=>{
-        arraygroup(searchDogs)[numberpage - 1].map((element) => {
+      
+        return arraygroup(searchDogs)[numberpage - 1].map((element) => {
+            console.log(element.id)
             return <Card
                 key={element.id}
                 id={element.id}
@@ -114,14 +122,16 @@ function Home(props) {
         })
     }
 
+    const inicio=()=>{setNum(0)}
+
 
 
 
     return (<div className={style.contenedorHome}>
         
-        {searchDogs.length === 0 && num !== 0 && queryState === true ? <LoadingComponent /> : null}
-        {allDogs.length === 0 && num !== 0 && queryState === false ? <LoadingComponent /> : null}
-
+        {searchDogs.length === 0 && num === 0 && queryState === true ? <LoadingComponent /> : null}
+        {allDogs.length === 0 && num === 0 && queryState === false ? <LoadingComponent /> : null}
+        
         <div>
             <h3>Filtrar por:</h3>
             <div >
@@ -142,24 +152,22 @@ function Home(props) {
                 </select>
             </div>
         </div>
-        {num === 0 && allDogs.length === 0 && queryState === false && <h2>No hay resultados</h2>}
-        {num === 0 && searchDogs.length === 0 && queryState === true && <h2>No hay resultados</h2>}
+        {num !== 0 && allDogs.length === 0 && queryState === false && (<>
+            <h2>No hay resultados</h2>
+            <a href={`${URLfrontend}home`} onClick={inicio}>Volver al inicio</a>
+            </>)}
+        {num !== 0 && searchDogs.length === 0 && queryState === true && (<>
+            <h2>No hay resultados</h2>
+            <a href={`${URLfrontend}home`} onClick={inicio}>Volver al inicio</a>
+            </>)}
+
         <div className={style.Home}>
 
             {searchDogs.length > 0 && queryState === true && cards(searchDogs)}
-            {allDogs.length > 0 && queryState === false && arraygroup(allDogs)[numberpage - 1].map((element) => {
-                return <Card
-                    key={element.id}
-                    id={element.id}
-                    name={element.name}
-                    image={element.image}
-                    temperament={element.temperament}
-                    weight={element.weight}
+            {allDogs.length > 0 && queryState === false && cards(allDogs)}
 
-                />
-            })}
-
-            {allDogs.length > 0 && pagination()}
+            {allDogs.length > 0 && queryState===false && pagination()}
+            {searchDogs.length>0 && queryState===true && pagination()}
         </div>
     </div>)
 }

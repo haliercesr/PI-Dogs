@@ -1,4 +1,5 @@
-import { GET_DOGS, SEARCH_DOGS, QUERY_DOGS, ORDER, FILTER, TEMPERAMENTS,FILTERbdd } from "../actions/types"
+import { searchDogs } from "../actions/actions"
+import { GET_DOGS, SEARCH_DOGS, QUERY_DOGS, ORDER, FILTER, TEMPERAMENTS, FILTERbdd } from "../actions/types"
 const { comparar } = require('../../utils/comparar')
 
 
@@ -20,7 +21,8 @@ const rootReducer = (state = initialState, { type, payload }) => {
         case SEARCH_DOGS:
             return {
                 ...state,
-                searchDogs: payload
+                searchDogs: payload,
+                searchDogsCopia: payload
             }
         case QUERY_DOGS:
             return {
@@ -28,13 +30,23 @@ const rootReducer = (state = initialState, { type, payload }) => {
                 queryState: payload
             }
         case FILTER:
-            console.log(state.allDogs)
-            return {
-                ...state,
-                allDogs: payload === "Todos"
-                    ? state.allDogsCopia
-                    : state.allDogs.filter((dog) => { return dog.temperament && dog.temperament.includes(payload) })
+            if (state.queryState === false) {
+                return {
+                    ...state,
+                    allDogs: payload === "Todos"
+                        ? state.allDogsCopia
+                        : state.allDogs.filter((dog) => { return dog.temperament && dog.temperament.includes(payload) })
+                }
             }
+            if (state.queryState === true) {
+                return {
+                    ...state,
+                    searchDogs: payload === "Todos"
+                        ? state.searchDogsCopia
+                        : state.searchDogs.filter((dog) => { return dog.temperament && dog.temperament.includes(payload) })
+                }
+            }
+
         case ORDER:
             return {
                 ...state,
@@ -47,23 +59,31 @@ const rootReducer = (state = initialState, { type, payload }) => {
                 ...state,
                 allDogsFilter: payload
             }
-            case FILTERbdd:
-                let filteredDogs = [];
-                if (payload === "Todos") {
-                    filteredDogs = state.allDogsCopia;
-                } else if (payload === "API") {
-                    filteredDogs= state.allDogsCopia.filter((dog) => typeof dog.id ==="number");
-                    console.log(filteredDogs)
-                } else if (payload === "BDD") {
-                    filteredDogs = state.allDogsCopia.filter((dog) => dog.created === true);
-                }
-            
+        case FILTERbdd:
+            let filteredDogs = [];
+            const dogs = state.queryState ? state.searchDogsCopia : state.allDogsCopia;
+
+            if (payload === "Todos") {
+                filteredDogs = dogs;
+            } else if (payload === "API") {
+                filteredDogs = dogs.filter((dog) => typeof dog.id === "number");
+                console.log(filteredDogs)
+            } else if (payload === "BDD") {
+                filteredDogs = dogs.filter((dog) => dog.created === true);
+            }
+
+            if (state.queryState === false) {
                 return {
                     ...state,
                     allDogs: filteredDogs
-                };
-            
-
+                }
+            };
+            if (state.queryState === true) {
+                return {
+                    ...state,
+                    searchDogs: filteredDogs
+                }
+            }
         default:
             return { ...state }
     }
